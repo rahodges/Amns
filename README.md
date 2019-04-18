@@ -1,6 +1,8 @@
 # AMNS
 AMNS Common Library Toolkit
 
+This uses earlier Visual Studio versions and is placed here for reference.
+
 Used for the following projects:
 - Shugyokai.org (Pre-2018)
 - Aikido Shobukan Dojo 
