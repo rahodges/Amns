@@ -7,3 +7,5 @@ Used for the following projects:
 - American Board of Hospice & Palliative Medicine
 - Microsoft RMS Utilities for The Big Bad Woof
 - Other Projects Not Listed Here
+
+Aspects of this are generated from NitroCast, formerly known as DbModel.
