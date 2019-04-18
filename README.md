@@ -8,4 +8,4 @@ Used for the following projects:
 - Microsoft RMS Utilities for The Big Bad Woof
 - Other Projects Not Listed Here
 
-Aspects of this are generated from NitroCast, formerly known as DbModel.
+Aspects of this are generated from NitroCast (NitroGen file extensions), formerly known as DbModel.
