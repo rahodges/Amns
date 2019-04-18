@@ -1,0 +1,469 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using Amns.GreyFox.Security;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.Content.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for DbContentHit.
+	/// </summary>
+	[ToolboxData("<{0}:DbContentHitEditor runat=server></{0}:DbContentHitEditor>")]
+	public class DbContentHitEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int dbContentHitID;
+		private DbContentHit obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		#region Private Control Fields for General Folder
+
+		protected ComponentArt.Web.UI.PageView GeneralView;
+		private ComponentArt.Web.UI.ComboBox comboUser;
+		private TextBox tbUserAgent;
+		private TextBox tbUserHostAddress;
+		private TextBox tbUserHostName;
+		private TextBox tbRequestDate;
+		private TextBox tbRequestReferrer;
+		private ComponentArt.Web.UI.ComboBox comboRequestContent;
+		private CheckBox cbIsUnique;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int DbContentHitID
+		{
+			get
+			{
+				return dbContentHitID;
+			}
+			set
+			{
+				loadFlag = true;
+				dbContentHitID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for General Folder
+
+			GeneralView = new ComponentArt.Web.UI.PageView();
+			GeneralView.CssClass = "PageContent";
+			multipage.PageViews.Add(GeneralView);
+
+			TabStripTab GeneralTab = new TabStripTab();
+			GeneralTab.Text = "General";
+			GeneralTab.PageViewId = GeneralView.ID;
+			tabstrip.Tabs.Add(GeneralTab);
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">User</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboUser = new ComponentArt.Web.UI.ComboBox();
+			comboUser.CssClass = "comboBox";
+			comboUser.HoverCssClass = "comboBoxHover";
+			comboUser.FocusedCssClass = "comboBoxHover";
+			comboUser.TextBoxCssClass = "comboTextBox";
+			comboUser.DropDownCssClass = "comboDropDown";
+			comboUser.ItemCssClass = "comboItem";
+			comboUser.ItemHoverCssClass = "comboItemHover";
+			comboUser.SelectedItemCssClass = "comboItemHover";
+			comboUser.DropHoverImageUrl = "images/drop_hover.gif";
+			comboUser.DropImageUrl = "images/drop.gif";
+			comboUser.Width = Unit.Pixel(300);
+			GeneralView.Controls.Add(comboUser);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">UserAgent</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbUserAgent = new TextBox();
+			tbUserAgent.EnableViewState = false;
+			GeneralView.Controls.Add(tbUserAgent);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">UserHostAddress</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbUserHostAddress = new TextBox();
+			tbUserHostAddress.EnableViewState = false;
+			GeneralView.Controls.Add(tbUserHostAddress);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">UserHostName</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbUserHostName = new TextBox();
+			tbUserHostName.EnableViewState = false;
+			GeneralView.Controls.Add(tbUserHostName);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">RequestDate</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbRequestDate = new TextBox();
+			tbRequestDate.EnableViewState = false;
+			GeneralView.Controls.Add(tbRequestDate);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">RequestReferrer</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbRequestReferrer = new TextBox();
+			tbRequestReferrer.EnableViewState = false;
+			GeneralView.Controls.Add(tbRequestReferrer);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">RequestContent</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboRequestContent = new ComponentArt.Web.UI.ComboBox();
+			comboRequestContent.CssClass = "comboBox";
+			comboRequestContent.HoverCssClass = "comboBoxHover";
+			comboRequestContent.FocusedCssClass = "comboBoxHover";
+			comboRequestContent.TextBoxCssClass = "comboTextBox";
+			comboRequestContent.DropDownCssClass = "comboDropDown";
+			comboRequestContent.ItemCssClass = "comboItem";
+			comboRequestContent.ItemHoverCssClass = "comboItemHover";
+			comboRequestContent.SelectedItemCssClass = "comboItemHover";
+			comboRequestContent.DropHoverImageUrl = "images/drop_hover.gif";
+			comboRequestContent.DropImageUrl = "images/drop.gif";
+			comboRequestContent.Width = Unit.Pixel(300);
+			GeneralView.Controls.Add(comboRequestContent);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">IsUnique</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbIsUnique = new CheckBox();
+			cbIsUnique.EnableViewState = false;
+			GeneralView.Controls.Add(cbIsUnique);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+			#region Bind General Child Data
+
+			GreyFoxUserManager userManager = new GreyFoxUserManager();
+			GreyFoxUserCollection userCollection = userManager.GetCollection(string.Empty, string.Empty, null);
+			ComponentArt.Web.UI.ComboBoxItem UserNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			UserNullItem.Text = "Null";
+			UserNullItem.Value = "Null";
+			comboUser.Items.Add(UserNullItem);
+			foreach(GreyFoxUser user in userCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = user.ToString();
+				i.Value = user.ID.ToString();
+				comboUser.Items.Add(i);
+			}
+
+			DbContentClipManager requestContentManager = new DbContentClipManager();
+			DbContentClipCollection requestContentCollection = requestContentManager.GetCollection(string.Empty, string.Empty, null);
+			ComponentArt.Web.UI.ComboBoxItem RequestContentNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			RequestContentNullItem.Text = "Null";
+			RequestContentNullItem.Value = "Null";
+			comboRequestContent.Items.Add(RequestContentNullItem);
+			foreach(DbContentClip requestContent in requestContentCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = requestContent.ToString();
+				i.Value = requestContent.ID.ToString();
+				comboRequestContent.Items.Add(i);
+			}
+
+			#endregion
+
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(dbContentHitID == 0)
+				obj = new DbContentHit();
+			else
+				obj = new DbContentHit(dbContentHitID);
+
+			if(comboUser.SelectedItem != null && comboUser.SelectedItem.Value != "Null")
+				obj.User = GreyFoxUser.NewPlaceHolder(
+					int.Parse(comboUser.SelectedItem.Value));
+			else
+				obj.User = null;
+
+			obj.UserAgent = tbUserAgent.Text;
+			obj.UserHostAddress = tbUserHostAddress.Text;
+			obj.UserHostName = tbUserHostName.Text;
+			obj.RequestDate = DateTime.Parse(tbRequestDate.Text);
+			obj.RequestReferrer = tbRequestReferrer.Text;
+			if(comboRequestContent.SelectedItem != null && comboRequestContent.SelectedItem.Value != "Null")
+				obj.RequestContent = DbContentClip.NewPlaceHolder(
+					int.Parse(comboRequestContent.SelectedItem.Value));
+			else
+				obj.RequestContent = null;
+
+			obj.IsUnique = cbIsUnique.Checked;
+			if(editOnAdd)
+				dbContentHitID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbUserAgent.Text = string.Empty;
+				tbUserHostAddress.Text = string.Empty;
+				tbUserHostName.Text = string.Empty;
+				tbRequestDate.Text = DateTime.Now.ToString();
+				tbRequestReferrer.Text = string.Empty;
+				cbIsUnique.Checked = false;
+				msUser.SelectedIndex = 0;
+				msRequestContent.SelectedIndex = 0;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(dbContentHitID > 0)
+				{
+					obj = new DbContentHit(dbContentHitID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(dbContentHitID <= 0)
+				{
+					obj = new DbContentHit();
+					headerText.Text = "Add ";
+				}
+
+				// Bind General Data
+				if(obj.User != null)
+					foreach(ListItem item in comboUser.Items)
+						item.Selected = obj.User.ID.ToString() == item.Value;
+					else
+						msUser.SelectedIndex = 0;
+				tbUserAgent.Text = obj.UserAgent;
+				tbUserHostAddress.Text = obj.UserHostAddress;
+				tbUserHostName.Text = obj.UserHostName;
+				tbRequestDate.Text = obj.RequestDate.ToString();
+				tbRequestReferrer.Text = obj.RequestReferrer;
+				if(obj.RequestContent != null)
+					foreach(ListItem item in comboRequestContent.Items)
+						item.Selected = obj.RequestContent.ID.ToString() == item.Value;
+					else
+						msRequestContent.SelectedIndex = 0;
+				cbIsUnique.Checked = obj.IsUnique;
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					dbContentHitID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = dbContentHitID;
+			return myState;
+		}
+	}
+}
+

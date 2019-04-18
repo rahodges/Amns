@@ -1,0 +1,3048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dbModel version="1.11">
+  <Name>Amns.GreyFox.Content</Name>
+  <DefaultNamespace>Amns.GreyFox.Content</DefaultNamespace>
+  <Description>GreyFox content management database.</Description>
+  <ConnectionString />
+  <ConnectionStringIsCoded>False</ConnectionStringIsCoded>
+  <ConnectionStringIsConfigKey>False</ConnectionStringIsConfigKey>
+  <VersionMajor>0</VersionMajor>
+  <VersionMinor>0</VersionMinor>
+  <VersionBuild>0</VersionBuild>
+  <References>
+    <ReferenceEntry>
+      <FileName>C:\Documents and Settings\manji\My Documents\Visual Studio 2008\Projects\GreyFox Core Assemblies\Amns.GreyFox\GreyFox.DbModel</FileName>
+    </ReferenceEntry>
+  </References>
+  <FieldDataTypes>
+    <FieldDataType Name="bool" ProgramType="bool">
+      <IsClass>False</IsClass>
+      <DotNetType>Boolean</DotNetType>
+      <DotNetDbType>DbType.Boolean</DotNetDbType>
+      <DbType>BIT</DbType>
+      <SqlServerType>BIT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetBoolean({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>CheckBox</TypeEditorClass>
+      <TypeEditorPrefix>cb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Checked = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Checked;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="byte" ProgramType="byte">
+      <IsClass>False</IsClass>
+      <DotNetType>Byte</DotNetType>
+      <DotNetDbType>DbType.Byte</DotNetDbType>
+      <DbType>BYTE</DbType>
+      <SqlServerType>TINYINT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetByte({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = byte.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="char" ProgramType="char">
+      <IsClass>False</IsClass>
+      <DotNetType>Char</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>TEXT(1)</DbType>
+      <SqlServerType>NVARCHAR(1)</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetChar({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = char.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="DateTime" ProgramType="DateTime">
+      <IsClass>False</IsClass>
+      <DotNetType>DateTime</DotNetType>
+      <DotNetDbType>DbType.Date</DotNetDbType>
+      <DbType>DATETIME</DbType>
+      <SqlServerType>DATETIME</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDateTime({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = DateTime.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="DateTime (DateEditor)" ProgramType="DateTime">
+      <IsClass>False</IsClass>
+      <DotNetType>DateTime</DotNetType>
+      <DotNetDbType>DbType.Date</DotNetDbType>
+      <DbType>DATETIME</DbType>
+      <SqlServerType>DATETIME</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDateTime({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>Amns.GreyFox.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>DateEditor</TypeEditorClass>
+      <TypeEditorPrefix>de</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Date = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Date;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>de{0}.ID = this.ID + "_{0}";
+de{0}.AutoAdjust = true;</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="decimal" ProgramType="decimal">
+      <IsClass>False</IsClass>
+      <DotNetType>Decimal</DotNetType>
+      <DotNetDbType>DbType.Currency</DotNetDbType>
+      <DbType>CURRENCY</DbType>
+      <SqlServerType>MONEY</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDecimal({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = decimal.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="double" ProgramType="double">
+      <IsClass>False</IsClass>
+      <DotNetType>Double</DotNetType>
+      <DotNetDbType>DbType.Double</DotNetDbType>
+      <DbType>DOUBLE</DbType>
+      <SqlServerType>FLOAT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDouble({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = double.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="float" ProgramType="float">
+      <IsClass>False</IsClass>
+      <DotNetType>Single</DotNetType>
+      <DotNetDbType>DbType.Single</DotNetDbType>
+      <DbType>SINGLE</DbType>
+      <SqlServerType>REAL</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetFloat({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = float.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="Guid" ProgramType="Guid">
+      <IsClass>False</IsClass>
+      <DotNetType>Guid</DotNetType>
+      <DotNetDbType>DbType.Guid</DotNetDbType>
+      <DbType>GUID</DbType>
+      <SqlServerType>UNIQUEIDENTIFIER</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetGuid({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = new Guid({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="int" ProgramType="int">
+      <IsClass>False</IsClass>
+      <DotNetType>Int32</DotNetType>
+      <DotNetDbType>DbType.Int32</DotNetDbType>
+      <DbType>LONG</DbType>
+      <SqlServerType>INT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetInt32({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = int.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="short" ProgramType="short">
+      <IsClass>False</IsClass>
+      <DotNetType>Int16</DotNetType>
+      <DotNetDbType>DbType.Int16</DotNetDbType>
+      <DbType>SHORT</DbType>
+      <SqlServerType>SMALLINT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetInt16({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = short.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>TEXT({0})</DbType>
+      <SqlServerType>NVARCHAR({0})</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>True</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO)" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO) - FCKeditor" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>FredCK</TypeEditorNamespace>
+      <TypeEditorClass>FCKeditor</TypeEditorClass>
+      <TypeEditorPrefix>fcke</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Value = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Value;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>fcke{0}.ID = this.ID + "_{0}";
+fcke{0}.Width = Unit.Percentage(100);</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO) - FTB" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>FreeTextBoxControls</TypeEditorNamespace>
+      <TypeEditorClass>FreeTextBox</TypeEditorClass>
+      <TypeEditorPrefix>ftb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>ftb{0}.ID = this.ID + "_{0}";
+ftb{0}.Width = Unit.Percentage(100);</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="TimeSpan" ProgramType="TimeSpan">
+      <IsClass>False</IsClass>
+      <DotNetType>TimeSpan</DotNetType>
+      <DotNetDbType>DbType.Double</DotNetDbType>
+      <DbType>DOUBLE</DbType>
+      <SqlServerType>FLOAT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>TimeSpan.FromTicks((long) {0}.GetDouble({1}))</DataReaderFormat>
+      <DataWriterFormat>{0}.Ticks</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = TimeSpan.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+  </FieldDataTypes>
+  <ChildDataTypes />
+  <ModelFolders>
+    <ModelFolder Name="General">
+      <Guid>00000000-0000-0000-0000-000000000000</Guid>
+      <Caption>General</Caption>
+      <Description>General</Description>
+      <IsExpanded>True</IsExpanded>
+      <IsItemListExpanded>False</IsItemListExpanded>
+      <IsReadOnly>False</IsReadOnly>
+      <IsBrowsable>True</IsBrowsable>
+      <Items>
+        <ClassObject Name="DbContentCatalog" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Catalogs</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>True</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces>IContentObject</Interfaces>
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="General">
+              <Guid>9f5c5db5-df2b-409f-9926-02150c80c820</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Title" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Title</Caption>
+                  <Description>Catalog title.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Description" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Description</Caption>
+                  <Description>Catalog description.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Keywords" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Status" CustomPrivateName="" CustomColumnName="">
+                  <DataType>byte</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption>Status</Caption>
+                  <Description>Status {Online=0, Offline=50}</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="WorkflowMode" CustomPrivateName="" CustomColumnName="">
+                  <DataType>byte</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption>Workflow Mode</Caption>
+                  <Description>A bit flag array sets this.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="CommentsEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="NotifyOnComments" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Enabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="SortOrder" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="ParentCatalog">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentCatalog</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="ChildCatalogs">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentCatalog</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="DefaultClip">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentClip</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="Icon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="_system">
+              <Guid>2ff2acd9-2035-45a4-ba2b-cf52444f5f28</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="CreateDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ModifyDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Defaults">
+              <Guid>25e24d2f-cc87-4118-94dd-847ad9dda621</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="DefaultTimeToPublish" CustomPrivateName="" CustomColumnName="">
+                  <DataType>TimeSpan</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>TimeSpan.Zero</DefaultValue>
+                  <Caption>Time To Publish</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="DefaultTimeToExpire" CustomPrivateName="" CustomColumnName="">
+                  <DataType>TimeSpan</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>TimeSpan.MaxValue</DefaultValue>
+                  <Caption>Time To Expiration</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="DefaultTimeToArchive" CustomPrivateName="" CustomColumnName="">
+                  <DataType>TimeSpan</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>TimeSpan.MaxValue</DefaultValue>
+                  <Caption>Time To Archive</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="DefaultKeywords" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="DefaultStatus">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentStatus</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="DefaultRating">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentRating</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="DefaultArchive">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentCatalog</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption>Default Archive</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="Templates">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentClip</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="DefaultMenuLeftIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="DefaultMenuRightIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Menu">
+              <Guid>836db558-f4b5-4460-b817-d0c0fdb6d2a1</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="MenuLabel" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Label</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuTooltip" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Tooltip</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption>Enabled</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuOrder" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption>Menu Order</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuLeftIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Left Icon URL</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuRightIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Right Icon URL</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuBreakImage" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Break Image URL</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuBreakCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Break CSS Class</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>CSS Class</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuCatalogCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Catalog CSS Class</Caption>
+                  <Description>Default CSS class to be used for all menu groups. </Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuCatalogSelectedCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Catalog Selected CSS Class</Caption>
+                  <Description>Default CSS class to be used for the menu group which contains a selected item. </Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuCatalogChildSelectedCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Catalog Child Selected CSS Class</Caption>
+                  <Description>Default CSS class to be used for menu groups whose descendent item is selected. </Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuClipCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Clip CSS Class</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuClipSelectedCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Clip Selected CSS Class</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuClipChildSelectedCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Clip Child Selected CSS Class</Caption>
+                  <Description>Default CSS class to be used for menu items whose descendent item is selected. </Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuClipChildExpandedCssClass" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Clip Child Expanded CSS Class</Caption>
+                  <Description>Default CSS class to be used for menu items when the mouse is over their descendent subgroup. </Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuOverrideFlags" CustomPrivateName="" CustomColumnName="">
+                  <DataType>byte</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption>Style Overrides</Caption>
+                  <Description>1=CatalogStyleOverride, 2=ClipStyleOverride, 4=LeftIconOverride, 8=RightIconOverride, 16=ChildCatalogInheritance</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuIconFlags" CustomPrivateName="" CustomColumnName="">
+                  <DataType>byte</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption />
+                  <Description>1=LeftIconOn, 2=RightIconOn, 4=RightIconChildren, 5=LeftIconChildren</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Security">
+              <Guid>4327ce17-be94-44ff-a1ca-930842229e25</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <ChildEntry PropertyName="AuthorRole">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxRole</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption>Author Roles</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="EditorRole">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxRole</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption>Editor Roles</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="ReviewerRole">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxRole</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption>Reviewer Role</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+              </Items>
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,97,221,1102,676</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="PropertyGridSelectLabel">
+              <Value>Security</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="DbContentClip" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Clips</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Database clip for Amns.GreyFox CMS.</Summary>
+          <IsCachingEnabled>True</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces>IContentObject</Interfaces>
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="_system">
+              <Guid>76d4af2e-d098-4368-9e86-0fe95ed9c7e4</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="CreateDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ModifyDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="General">
+              <Guid>cfcfe8a6-fa26-4aba-97ca-512f40b77082</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Title" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Title</Caption>
+                  <Description>Title of clip.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Description" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Description</Caption>
+                  <Description>Content description.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Keywords" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Keywords</Caption>
+                  <Description>Keywords</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Icon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="Status">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentStatus</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Body">
+              <Guid>e0c23162-5ee0-4755-961c-7b54b4e3f59c</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Body" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO) - FTB</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Content</Caption>
+                  <Description>Content to display for the clip</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Publishing">
+              <Guid>78cc4e20-5611-4c9b-9829-13b7ef506d8b</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <ChildEntry PropertyName="ParentCatalog">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentCatalog</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption>Parent Catalog</Caption>
+                  <Description>Parent catalog of clip. Drafts do NOT have a parent catalog!</Description>
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="PublishDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime (DateEditor)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Publish Date</Caption>
+                  <Description>Date when the content becomes available.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ExpirationDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime (DateEditor)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Expiration Date</Caption>
+                  <Description>Date when the clip expires.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ArchiveDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime (DateEditor)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Archive Date</Caption>
+                  <Description>Date to archive the clip to the archive table.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Priority" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="SortOrder" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="Rating">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentRating</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="References">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentClip</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption>Cross References</Caption>
+                  <Description>Clips to cross reference this clip to.</Description>
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="CommentsEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="NotifyOnComments" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="WorkingDraft">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentClip</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>False</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="OverrideUrl" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Contributors">
+              <Guid>06cff044-ae44-437f-946e-529bc4a16894</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <ChildEntry PropertyName="Authors">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxUser</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption>Authors</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="Editors">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxUser</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption>Editors</Caption>
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Menu">
+              <Guid>b32072ad-e28a-4127-aca8-839bb34890c3</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="MenuLabel" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description>The menu title of the clip; if none is specified, the title is used.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuTooltip" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>true</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuOrder" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>0</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuLeftIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuLeftIconOver" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuRightIcon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuRightIconOver" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="MenuBreak" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>false</DefaultValue>
+                  <Caption />
+                  <Description>Displays a menu break before the item.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="Security">
+              <Guid>0bb11320-be33-4db9-9d65-c8035e1d28ad</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="DbContentComment" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Comments</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="_system">
+              <Guid>e8ea9c70-ed11-49b9-b4e3-7587ae4be5b0</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="CreateDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ModifyDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="New Folder">
+              <Guid>0850f60a-58ee-4332-8614-8381f0315fd9</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Name" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>50</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Email" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>50</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Url" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="IP" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>15</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Body" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="DbContentHit" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Hits</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="_system">
+              <Guid>00000000-0000-0000-0000-000000000000</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+            <ClassFolder Name="General">
+              <Guid>00000000-0000-0000-0000-000000000000</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <ChildEntry PropertyName="User">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxUser</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="UserAgent" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue>string.Empty</NullValue>
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="UserHostAddress" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>15</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="UserHostName" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="RequestDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="RequestReferrer" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="RequestContent">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>DbContentClip</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Content</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName />
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <FieldEntry PropertyName="IsUnique" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="DbContentRating" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Ratings</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption>Rating</Caption>
+          <Description>Rating</Description>
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>True</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="_system">
+              <Guid>02d1c0a3-da81-4086-9870-d28e05995c44</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="CreateDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ModifyDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>DateTime.Now</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="General">
+              <Guid>7c83b657-ae34-4920-9023-74839b8dcf19</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Name" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>25</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Description" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="IconUrl" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description>Specifies a location for a rating icon.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="RequiredRole">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>GreyFoxRole</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Security</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>False</IsTableCoded>
+                  <TableName>sysGlobal_Rolesc</TableName>
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>False</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+              </Items>
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="DbContentStatus" NameSpace="Amns.GreyFox.Content">
+          <OutputPath>.\Objects</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitCms_Statuses</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>True</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="_system">
+              <Guid>39501b46-27b3-4685-8e8d-f5b96c13876d</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+            <ClassFolder Name="System">
+              <Guid>487f6e7c-346d-4423-b44f-2b35730de99a</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Name" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="IsDraft" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="IsPublished" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="FeeEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="EditEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ArchiveEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ReviewEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Icon" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+      </Items>
+    </ModelFolder>
+  </ModelFolders>
+</dbModel>

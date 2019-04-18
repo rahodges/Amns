@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Amns.GreyFox.People.GreyFoxContact">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MiDAEsog8nhAgeT8pIAUCSQiFhNOIsA7WCgAHRAgoBg=</HashCode>
+      <FileName>People\GreyFoxContact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Amns.GreyFox.People.GreyFoxContactCollection" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="3.75" />
+    <NestedTypes>
+      <Class Name="Amns.GreyFox.People.GreyFoxContactCollection.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>People\GreyFoxContactCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEIAAEAAAICAABAdDAAQlCQwAgUIABAECAAAAABQIBA=</HashCode>
+      <FileName>People\GreyFoxContactCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Amns.GreyFox.People.NameParser">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAABAAEAA4AAAAQAACBCAAAAEAAAwCASAAAAAAA=</HashCode>
+      <FileName>People\NameParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

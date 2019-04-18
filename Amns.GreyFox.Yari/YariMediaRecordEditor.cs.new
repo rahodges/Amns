@@ -1,0 +1,732 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using FreeTextBoxControls;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.Yari.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for YariMediaRecord.
+	/// </summary>
+	[ToolboxData("<{0}:YariMediaRecordEditor runat=server></{0}:YariMediaRecordEditor>")]
+	public class YariMediaRecordEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int yariMediaRecordID;
+		private YariMediaRecord obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for Default Folder
+
+		protected ComponentArt.Web.UI.PageView DefaultView;
+		private TextBox tbEndNoteReferenceID;
+		private RegularExpressionValidator revEndNoteReferenceID;
+		private TextBox tbPublishYear;
+		private RegularExpressionValidator revPublishYear;
+		private TextBox tbTitle;
+		private TextBox tbPages;
+		private RegularExpressionValidator revPages;
+		private TextBox tbEdition;
+		private TextBox tbIsbn;
+		private TextBox tbLabel;
+		private FreeTextBox ftbAbstractText;
+		private FreeTextBox ftbContentsText;
+		private TextBox tbNotesText;
+		private DateEditor deAmazonFillDate;
+		private DateEditor deAmazonRefreshDate;
+		private TextBox tbImageUrlSmall;
+		private TextBox tbImageUrlMedium;
+		private TextBox tbImageUrlLarge;
+		private Literal ltAmazonListPrice;
+		private Literal ltAmazonOurPrice;
+		private Literal ltAmazonAvailability;
+		private Literal ltAmazonMedia;
+		private Literal ltAmazonReleaseDate;
+		private Literal ltAmazonAsin;
+		private CheckBox cbAbstractEnabled;
+		private CheckBox cbContentsEnabled;
+		private CheckBox cbNotesEnabled;
+		private TextBox tbAuthors;
+		private TextBox tbSecondaryAuthors;
+		private TextBox tbPublisher;
+		private ComponentArt.Web.UI.ComboBox comboMediaType;
+		private MultiSelectBox msKeywords;
+
+		#endregion
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int YariMediaRecordID
+		{
+			get
+			{
+				return yariMediaRecordID;
+			}
+			set
+			{
+				loadFlag = true;
+				yariMediaRecordID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for Default Folder
+
+			DefaultView = new ComponentArt.Web.UI.PageView();
+			DefaultView.CssClass = "PageContent";
+			multipage.PageViews.Add(DefaultView);
+
+			TabStripTab DefaultTab = new TabStripTab();
+			DefaultTab.Text = "Default";
+			DefaultTab.PageViewId = DefaultView.ID;
+			tabstrip.Tabs.Add(DefaultTab);
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">EndNoteReferenceID</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbEndNoteReferenceID = new TextBox();
+			tbEndNoteReferenceID.ID = this.ID + "_EndNoteReferenceID";
+			tbEndNoteReferenceID.EnableViewState = false;
+			DefaultView.Controls.Add(tbEndNoteReferenceID);
+			revEndNoteReferenceID = new RegularExpressionValidator();
+			revEndNoteReferenceID.ControlToValidate = tbEndNoteReferenceID.ID;
+			revEndNoteReferenceID.ValidationExpression = "^(\\+|-)?\\d+$";
+			revEndNoteReferenceID.ErrorMessage = "*";
+			revEndNoteReferenceID.Display = ValidatorDisplay.Dynamic;
+			revEndNoteReferenceID.EnableViewState = false;
+			DefaultView.Controls.Add(revEndNoteReferenceID);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Year</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPublishYear = new TextBox();
+			tbPublishYear.ID = this.ID + "_PublishYear";
+			tbPublishYear.EnableViewState = false;
+			DefaultView.Controls.Add(tbPublishYear);
+			revPublishYear = new RegularExpressionValidator();
+			revPublishYear.ControlToValidate = tbPublishYear.ID;
+			revPublishYear.ValidationExpression = "^(\\+|-)?\\d+$";
+			revPublishYear.ErrorMessage = "*";
+			revPublishYear.Display = ValidatorDisplay.Dynamic;
+			revPublishYear.EnableViewState = false;
+			DefaultView.Controls.Add(revPublishYear);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Title</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbTitle = new TextBox();
+			tbTitle.EnableViewState = false;
+			DefaultView.Controls.Add(tbTitle);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Page Count</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPages = new TextBox();
+			tbPages.ID = this.ID + "_Pages";
+			tbPages.EnableViewState = false;
+			DefaultView.Controls.Add(tbPages);
+			revPages = new RegularExpressionValidator();
+			revPages.ControlToValidate = tbPages.ID;
+			revPages.ValidationExpression = "^(\\+|-)?\\d+$";
+			revPages.ErrorMessage = "*";
+			revPages.Display = ValidatorDisplay.Dynamic;
+			revPages.EnableViewState = false;
+			DefaultView.Controls.Add(revPages);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Edition</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbEdition = new TextBox();
+			tbEdition.EnableViewState = false;
+			DefaultView.Controls.Add(tbEdition);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Isbn</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbIsbn = new TextBox();
+			tbIsbn.EnableViewState = false;
+			DefaultView.Controls.Add(tbIsbn);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Label</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbLabel = new TextBox();
+			tbLabel.EnableViewState = false;
+			DefaultView.Controls.Add(tbLabel);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AbstractText</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ftbAbstractText = new FreeTextBox();
+			ftbAbstractText.ID = this.ID + "_AbstractText";
+			ftbAbstractText.Width = Unit.Percentage(100);
+			ftbAbstractText.EnableViewState = false;
+			DefaultView.Controls.Add(ftbAbstractText);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ContentsText</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ftbContentsText = new FreeTextBox();
+			ftbContentsText.ID = this.ID + "_ContentsText";
+			ftbContentsText.Width = Unit.Percentage(100);
+			ftbContentsText.EnableViewState = false;
+			DefaultView.Controls.Add(ftbContentsText);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">NotesText</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbNotesText = new TextBox();
+			tbNotesText.EnableViewState = false;
+			DefaultView.Controls.Add(tbNotesText);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonFillDate</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			deAmazonFillDate = new DateEditor();
+			deAmazonFillDate.ID = this.ID + "_AmazonFillDate";
+			deAmazonFillDate.AutoAdjust = true;
+			deAmazonFillDate.EnableViewState = false;
+			DefaultView.Controls.Add(deAmazonFillDate);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonRefreshDate</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			deAmazonRefreshDate = new DateEditor();
+			deAmazonRefreshDate.ID = this.ID + "_AmazonRefreshDate";
+			deAmazonRefreshDate.AutoAdjust = true;
+			deAmazonRefreshDate.EnableViewState = false;
+			DefaultView.Controls.Add(deAmazonRefreshDate);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ImageUrlSmall</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbImageUrlSmall = new TextBox();
+			tbImageUrlSmall.EnableViewState = false;
+			DefaultView.Controls.Add(tbImageUrlSmall);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ImageUrlMedium</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbImageUrlMedium = new TextBox();
+			tbImageUrlMedium.EnableViewState = false;
+			DefaultView.Controls.Add(tbImageUrlMedium);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ImageUrlLarge</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbImageUrlLarge = new TextBox();
+			tbImageUrlLarge.EnableViewState = false;
+			DefaultView.Controls.Add(tbImageUrlLarge);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonListPrice</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonListPrice = new Literal();
+			ltAmazonListPrice.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonListPrice);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonOurPrice</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonOurPrice = new Literal();
+			ltAmazonOurPrice.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonOurPrice);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonAvailability</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonAvailability = new Literal();
+			ltAmazonAvailability.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonAvailability);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonMedia</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonMedia = new Literal();
+			ltAmazonMedia.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonMedia);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonReleaseDate</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonReleaseDate = new Literal();
+			ltAmazonReleaseDate.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonReleaseDate);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">AmazonAsin</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltAmazonAsin = new Literal();
+			ltAmazonAsin.EnableViewState = false;
+			DefaultView.Controls.Add(ltAmazonAsin);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Enable Abstract?</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbAbstractEnabled = new CheckBox();
+			cbAbstractEnabled.EnableViewState = false;
+			DefaultView.Controls.Add(cbAbstractEnabled);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Enable Contents?</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbContentsEnabled = new CheckBox();
+			cbContentsEnabled.EnableViewState = false;
+			DefaultView.Controls.Add(cbContentsEnabled);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Enable Notes?</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbNotesEnabled = new CheckBox();
+			cbNotesEnabled.EnableViewState = false;
+			DefaultView.Controls.Add(cbNotesEnabled);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Authors</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbAuthors = new TextBox();
+			tbAuthors.EnableViewState = false;
+			DefaultView.Controls.Add(tbAuthors);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Secondary Authors</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbSecondaryAuthors = new TextBox();
+			tbSecondaryAuthors.EnableViewState = false;
+			DefaultView.Controls.Add(tbSecondaryAuthors);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Publisher</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPublisher = new TextBox();
+			tbPublisher.EnableViewState = false;
+			DefaultView.Controls.Add(tbPublisher);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Reference Type</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboMediaType = new ComponentArt.Web.UI.ComboBox();
+			comboMediaType.CssClass = "comboBox";
+			comboMediaType.HoverCssClass = "comboBoxHover";
+			comboMediaType.FocusedCssClass = "comboBoxHover";
+			comboMediaType.TextBoxCssClass = "comboTextBox";
+			comboMediaType.DropDownCssClass = "comboDropDown";
+			comboMediaType.ItemCssClass = "comboItem";
+			comboMediaType.ItemHoverCssClass = "comboItemHover";
+			comboMediaType.SelectedItemCssClass = "comboItemHover";
+			comboMediaType.DropHoverImageUrl = "images/drop_hover.gif";
+			comboMediaType.DropImageUrl = "images/drop.gif";
+			comboMediaType.Width = Unit.Pixel(300);
+			DefaultView.Controls.Add(comboMediaType);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Keywords</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msKeywords = new MultiSelectBox();
+			msKeywords.Mode = MultiSelectBoxMode.DualSelect;
+			DefaultView.Controls.Add(msKeywords);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+			#region Bind Default Child Data
+
+			YariMediaTypeManager mediaTypeManager = new YariMediaTypeManager();
+			YariMediaTypeCollection mediaTypeCollection = mediaTypeManager.GetCollection(string.Empty, string.Empty);
+			ComponentArt.Web.UI.ComboBoxItem MediaTypeNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			MediaTypeNullItem.Text = "Null";
+			MediaTypeNullItem.Value = "Null";
+			comboMediaType.Items.Add(MediaTypeNullItem);
+			foreach(YariMediaType mediaType in mediaTypeCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = mediaType.ToString();
+				i.Value = mediaType.ID.ToString();
+				comboMediaType.Items.Add(i);
+			}
+
+			YariMediaKeywordManager keywordsManager = new YariMediaKeywordManager();
+			YariMediaKeywordCollection keywordsCollection = keywordsManager.GetCollection(string.Empty, string.Empty);
+			msKeywords.Items.Add(new ListItem("Null", "Null"));
+			foreach(YariMediaKeyword keywords in keywordsCollection)
+			{
+				ListItem i = new ListItem(keywords.ToString(), keywords.ID.ToString());
+				msKeywords.Items.Add(i);
+			}
+
+			#endregion
+
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(yariMediaRecordID == 0)
+				obj = new YariMediaRecord();
+			else
+				obj = new YariMediaRecord(yariMediaRecordID);
+
+			obj.EndNoteReferenceID = int.Parse(tbEndNoteReferenceID.Text);
+			obj.PublishYear = int.Parse(tbPublishYear.Text);
+			obj.Title = tbTitle.Text;
+			obj.Pages = int.Parse(tbPages.Text);
+			obj.Edition = tbEdition.Text;
+			obj.Isbn = tbIsbn.Text;
+			obj.Label = tbLabel.Text;
+			obj.AbstractText = ftbAbstractText.Text;
+			obj.ContentsText = ftbContentsText.Text;
+			obj.NotesText = tbNotesText.Text;
+			obj.AmazonFillDate = deAmazonFillDate.Date;
+			obj.AmazonRefreshDate = deAmazonRefreshDate.Date;
+			obj.ImageUrlSmall = tbImageUrlSmall.Text;
+			obj.ImageUrlMedium = tbImageUrlMedium.Text;
+			obj.ImageUrlLarge = tbImageUrlLarge.Text;
+			obj.AbstractEnabled = cbAbstractEnabled.Checked;
+			obj.ContentsEnabled = cbContentsEnabled.Checked;
+			obj.NotesEnabled = cbNotesEnabled.Checked;
+			obj.Authors = tbAuthors.Text;
+			obj.SecondaryAuthors = tbSecondaryAuthors.Text;
+			obj.Publisher = tbPublisher.Text;
+			if(comboMediaType.SelectedItem != null && comboMediaType.SelectedItem.Value != "Null")
+				obj.MediaType = YariMediaType.NewPlaceHolder(
+					int.Parse(comboMediaType.SelectedItem.Value));
+			else
+				obj.MediaType = null;
+
+			if(msKeywords.IsChanged)
+			{
+				obj.Keywords = new YariMediaKeywordCollection();
+				foreach(ListItem i in msKeywords.Items)
+					if(i.Selected)
+						obj.Keywords.Add(YariMediaKeyword.NewPlaceHolder(int.Parse(i.Value)));
+			}
+
+			if(editOnAdd)
+				yariMediaRecordID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbEndNoteReferenceID.Text = string.Empty;
+				tbPublishYear.Text = string.Empty;
+				tbTitle.Text = string.Empty;
+				tbPages.Text = string.Empty;
+				tbEdition.Text = string.Empty;
+				tbIsbn.Text = string.Empty;
+				tbLabel.Text = string.Empty;
+				ftbAbstractText.Text = string.Empty;
+				ftbContentsText.Text = string.Empty;
+				tbNotesText.Text = string.Empty;
+				deAmazonFillDate.Date = DateTime.Now;
+				deAmazonRefreshDate.Date = DateTime.Now;
+				tbImageUrlSmall.Text = string.Empty;
+				tbImageUrlMedium.Text = string.Empty;
+				tbImageUrlLarge.Text = string.Empty;
+				cbAbstractEnabled.Checked = false;
+				cbContentsEnabled.Checked = false;
+				cbNotesEnabled.Checked = false;
+				tbAuthors.Text = string.Empty;
+				tbSecondaryAuthors.Text = string.Empty;
+				tbPublisher.Text = string.Empty;
+				msMediaType.SelectedIndex = 0;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(yariMediaRecordID > 0)
+				{
+					obj = new YariMediaRecord(yariMediaRecordID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(yariMediaRecordID <= 0)
+				{
+					obj = new YariMediaRecord();
+					headerText.Text = "Add ";
+				}
+
+				// Bind Default Data
+				tbEndNoteReferenceID.Text = obj.EndNoteReferenceID.ToString();
+				tbPublishYear.Text = obj.PublishYear.ToString();
+				tbTitle.Text = obj.Title;
+				tbPages.Text = obj.Pages.ToString();
+				tbEdition.Text = obj.Edition;
+				tbIsbn.Text = obj.Isbn;
+				tbLabel.Text = obj.Label;
+				ftbAbstractText.Text = obj.AbstractText;
+				ftbContentsText.Text = obj.ContentsText;
+				tbNotesText.Text = obj.NotesText;
+				deAmazonFillDate.Date = obj.AmazonFillDate;
+				deAmazonRefreshDate.Date = obj.AmazonRefreshDate;
+				tbImageUrlSmall.Text = obj.ImageUrlSmall;
+				tbImageUrlMedium.Text = obj.ImageUrlMedium;
+				tbImageUrlLarge.Text = obj.ImageUrlLarge;
+				ltAmazonListPrice.Text = obj.AmazonListPrice.ToString();
+				ltAmazonOurPrice.Text = obj.AmazonOurPrice.ToString();
+				ltAmazonAvailability.Text = obj.AmazonAvailability.ToString();
+				ltAmazonMedia.Text = obj.AmazonMedia.ToString();
+				ltAmazonReleaseDate.Text = obj.AmazonReleaseDate.ToString();
+				ltAmazonAsin.Text = obj.AmazonAsin.ToString();
+				cbAbstractEnabled.Checked = obj.AbstractEnabled;
+				cbContentsEnabled.Checked = obj.ContentsEnabled;
+				cbNotesEnabled.Checked = obj.NotesEnabled;
+				tbAuthors.Text = obj.Authors;
+				tbSecondaryAuthors.Text = obj.SecondaryAuthors;
+				tbPublisher.Text = obj.Publisher;
+				if(obj.MediaType != null)
+					foreach(ListItem item in comboMediaType.Items)
+						item.Selected = obj.MediaType.ID.ToString() == item.Value;
+					else
+						msMediaType.SelectedIndex = 0;
+				foreach(ListItem i in msKeywords.Items)
+					foreach(YariMediaKeyword yariMediaKeyword in obj.Keywords)
+						if(i.Value == yariMediaKeyword.ID.ToString())
+						{
+							i.Selected = true;
+							break;
+						}
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					yariMediaRecordID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = yariMediaRecordID;
+			return myState;
+		}
+	}
+}
+

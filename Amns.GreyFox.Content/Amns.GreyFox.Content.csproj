@@ -1,0 +1,402 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62CBE639-5902-4E7B-AC50-B34976D9DEDD}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Amns.Greyfox.Content</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Amns.Greyfox.Content</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Amns.GreyFox.Content/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentArt.Web.UI, Version=2007.2.1302.3, Culture=neutral, PublicKeyToken=9bc9f846553156bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExtRef\ComponentArt.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\MenuCacheControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\MenuOutputWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\SiteMapCacheControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\SiteMapOutputWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContentClip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContentManagerEnumerations.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContentManagerException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContentServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentCatalog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentCatalogCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentCatalogManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentClip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentClipCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentClipManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentComment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentCommentCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentCommentManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentHit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentHitCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentHitManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentRating.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentRatingCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentRatingManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentStatusCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DbContentStatusManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enumerations.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\CommandClip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GreyFoxContentException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\ContentBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\ContentCompareKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\ContentComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\ContentUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\CssInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\HitCompareKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\HitComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\IconInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\IContentObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\MenuBinder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\WebChart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentBreadcrumbsLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogDeleteDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogSiteMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCatalogView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClientGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClipDeleteDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClipEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClipGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClipPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentClipView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCommentDeleteDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCommentEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCommentGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentCommentView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentHitGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentRatingDeleteDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentRatingEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentRatingGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentStatusDeleteDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentStatusEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentStatusGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DbContentStatusView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\FileContentPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ICatalogItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\IEditor.cs" />
+    <Compile Include="Web\UI\WebControls\ImageGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ImagePanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Templates\SnapAdmin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Templates\SnapContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Templates\SnapFooter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Templates\SnapHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Templates\SnapReferences.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\XmlContentPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XmlClip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XmlContentManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Content.DbModel" />
+    <None Include="Web\UI\WebControls\XmlContentGrid.cs">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="XmlClipCollection.cs">
+      <SubType>Code</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExtRef\ComponentArt.Web.UI.dll">
+    </Content>
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="ExtRef\Microsoft.Practices.ObjectBuilder.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Amns.GreyFox\Amns.GreyFox.csproj">
+      <Project>{FE092059-B12B-4DCF-AE1E-DB154D593EE8}</Project>
+      <Name>Amns.GreyFox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web\Utility\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>REM del j:\rel\amns.greyfox.content.*
+REM copy "$(TargetDir)amns.greyfox.content.*" j:\rel</PostBuildEvent>
+  </PropertyGroup>
+</Project>

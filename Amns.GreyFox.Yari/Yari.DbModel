@@ -1,0 +1,1177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dbModel version="1.11">
+  <Name>Yari</Name>
+  <DefaultNamespace>Amns.GreyFox.Yari</DefaultNamespace>
+  <Description />
+  <ConnectionString />
+  <ConnectionStringIsCoded>False</ConnectionStringIsCoded>
+  <ConnectionStringIsConfigKey>False</ConnectionStringIsConfigKey>
+  <VersionMajor>0</VersionMajor>
+  <VersionMinor>0</VersionMinor>
+  <VersionBuild>0</VersionBuild>
+  <References>
+    <ReferenceEntry>
+      <FileName>C:\Documents and Settings\manji\My Documents\Visual Studio 2008\Projects\GreyFox Core Assemblies\Amns.GreyFox\GreyFox.DbModel</FileName>
+    </ReferenceEntry>
+  </References>
+  <FieldDataTypes>
+    <FieldDataType Name="bool" ProgramType="bool">
+      <IsClass>False</IsClass>
+      <DotNetType>Boolean</DotNetType>
+      <DotNetDbType>DbType.Boolean</DotNetDbType>
+      <DbType>BIT</DbType>
+      <SqlServerType>BIT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetBoolean({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>CheckBox</TypeEditorClass>
+      <TypeEditorPrefix>cb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Checked = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Checked;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="byte" ProgramType="byte">
+      <IsClass>False</IsClass>
+      <DotNetType>Byte</DotNetType>
+      <DotNetDbType>DbType.Byte</DotNetDbType>
+      <DbType>BYTE</DbType>
+      <SqlServerType>TINYINT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetByte({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = byte.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="char" ProgramType="char">
+      <IsClass>False</IsClass>
+      <DotNetType>Char</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>TEXT(1)</DbType>
+      <SqlServerType>NVARCHAR(1)</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetChar({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = char.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="DateTime" ProgramType="DateTime">
+      <IsClass>False</IsClass>
+      <DotNetType>DateTime</DotNetType>
+      <DotNetDbType>DbType.Date</DotNetDbType>
+      <DbType>DATETIME</DbType>
+      <SqlServerType>DATETIME</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDateTime({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = DateTime.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="DateTime (DateEditor)" ProgramType="DateTime">
+      <IsClass>False</IsClass>
+      <DotNetType>DateTime</DotNetType>
+      <DotNetDbType>DbType.Date</DotNetDbType>
+      <DbType>DATETIME</DbType>
+      <SqlServerType>DATETIME</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDateTime({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>Amns.GreyFox.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>DateEditor</TypeEditorClass>
+      <TypeEditorPrefix>de</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Date = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Date;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>de{0}.ID = this.ID + "_{0}";
+de{0}.AutoAdjust = true;</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="decimal" ProgramType="decimal">
+      <IsClass>False</IsClass>
+      <DotNetType>Decimal</DotNetType>
+      <DotNetDbType>DbType.Currency</DotNetDbType>
+      <DbType>CURRENCY</DbType>
+      <SqlServerType>MONEY</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDecimal({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = decimal.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="double" ProgramType="double">
+      <IsClass>False</IsClass>
+      <DotNetType>Double</DotNetType>
+      <DotNetDbType>DbType.Double</DotNetDbType>
+      <DbType>DOUBLE</DbType>
+      <SqlServerType>FLOAT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetDouble({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = double.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="float" ProgramType="float">
+      <IsClass>False</IsClass>
+      <DotNetType>Single</DotNetType>
+      <DotNetDbType>DbType.Single</DotNetDbType>
+      <DbType>SINGLE</DbType>
+      <SqlServerType>REAL</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetFloat({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = float.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="Guid" ProgramType="Guid">
+      <IsClass>False</IsClass>
+      <DotNetType>Guid</DotNetType>
+      <DotNetDbType>DbType.Guid</DotNetDbType>
+      <DbType>GUID</DbType>
+      <SqlServerType>UNIQUEIDENTIFIER</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetGuid({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = new Guid({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="int" ProgramType="int">
+      <IsClass>False</IsClass>
+      <DotNetType>Int32</DotNetType>
+      <DotNetDbType>DbType.Int32</DotNetDbType>
+      <DbType>LONG</DbType>
+      <SqlServerType>INT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetInt32({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = int.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties>tb{0}.ID = this.ID + "_{0}";</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="short" ProgramType="short">
+      <IsClass>False</IsClass>
+      <DotNetType>Int16</DotNetType>
+      <DotNetDbType>DbType.Int16</DotNetDbType>
+      <DbType>SHORT</DbType>
+      <SqlServerType>SMALLINT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetInt16({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = short.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>TEXT({0})</DbType>
+      <SqlServerType>NVARCHAR({0})</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>True</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO)" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO) - FCKeditor" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>FredCK</TypeEditorNamespace>
+      <TypeEditorClass>FCKeditor</TypeEditorClass>
+      <TypeEditorPrefix>fcke</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Value = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Value;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>fcke{0}.ID = this.ID + "_{0}";
+fcke{0}.Width = Unit.Percentage(100);</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="string (MEMO) - FTB" ProgramType="string">
+      <IsClass>False</IsClass>
+      <DotNetType>String</DotNetType>
+      <DotNetDbType>DbType.String</DotNetDbType>
+      <DbType>MEMO</DbType>
+      <SqlServerType>NTEXT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>True</AdhocQuotesEnabled>
+      <DataReaderFormat>{0}.GetString({1})</DataReaderFormat>
+      <DataWriterFormat>{0}</DataWriterFormat>
+      <TypeEditorNamespace>FreeTextBoxControls</TypeEditorNamespace>
+      <TypeEditorClass>FreeTextBox</TypeEditorClass>
+      <TypeEditorPrefix>ftb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1};</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = {1}.Text;</TypeEditorGetValueFormat>
+      <TypeEditorProperties>ftb{0}.ID = this.ID + "_{0}";
+ftb{0}.Width = Unit.Percentage(100);</TypeEditorProperties>
+    </FieldDataType>
+    <FieldDataType Name="TimeSpan" ProgramType="TimeSpan">
+      <IsClass>False</IsClass>
+      <DotNetType>TimeSpan</DotNetType>
+      <DotNetDbType>DbType.Double</DotNetDbType>
+      <DbType>DOUBLE</DbType>
+      <SqlServerType>FLOAT</SqlServerType>
+      <DefaultValue />
+      <DefaultValueFormat />
+      <LengthEnabled>False</LengthEnabled>
+      <ByteBufferEnabled>False</ByteBufferEnabled>
+      <AdhocQuotesEnabled>False</AdhocQuotesEnabled>
+      <DataReaderFormat>TimeSpan.FromTicks((long) {0}.GetDouble({1}))</DataReaderFormat>
+      <DataWriterFormat>{0}.Ticks</DataWriterFormat>
+      <TypeEditorNamespace>System.Web.UI.WebControls</TypeEditorNamespace>
+      <TypeEditorClass>TextBox</TypeEditorClass>
+      <TypeEditorPrefix>tb</TypeEditorPrefix>
+      <TypeEditorSetValueFormat>{0}.Text = {1}.ToString();</TypeEditorSetValueFormat>
+      <TypeEditorGetValueFormat>{0} = TimeSpan.Parse({1}.Text);</TypeEditorGetValueFormat>
+      <TypeEditorProperties />
+    </FieldDataType>
+  </FieldDataTypes>
+  <ChildDataTypes />
+  <ModelFolders>
+    <ModelFolder Name="General">
+      <Guid>00000000-0000-0000-0000-000000000000</Guid>
+      <Caption>General</Caption>
+      <Description>General</Description>
+      <IsExpanded>True</IsExpanded>
+      <IsItemListExpanded>False</IsItemListExpanded>
+      <IsReadOnly>False</IsReadOnly>
+      <IsBrowsable>True</IsBrowsable>
+      <Items>
+        <ClassObject Name="YariMediaKeyword" NameSpace="Amns.GreyFox.Yari">
+          <OutputPath>..\Amns.GreyFox.Yari</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitYari_MediaKeywords</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>False</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="Default">
+              <Guid>6a875bbe-cc39-425e-8d88-b1e2885b41e9</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Keyword" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>25</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="_system">
+              <Guid>96712f9c-6e9e-4f7a-b4d8-fd0ec5297c14</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="YariMediaRecord" NameSpace="Amns.GreyFox.Yari">
+          <OutputPath>..\Amns.GreyFox.Yari</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitYari_Books</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>False</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="Default">
+              <Guid>2f59eafa-c02a-4e00-b707-d31daa3d760c</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>True</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="EndNoteReferenceID" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="PublishYear" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Year</Caption>
+                  <Description>Year published.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Title" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption>Title</Caption>
+                  <Description>Title of media.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Pages" CustomPrivateName="" CustomColumnName="">
+                  <DataType>int</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Page Count</Caption>
+                  <Description>If the media is print media, the page count of the media.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Edition" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Isbn" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>15</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Label" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>5</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AbstractText" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO) - FTB</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ContentsText" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO) - FTB</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="NotesText" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string (MEMO)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonFillDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime (DateEditor)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonRefreshDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime (DateEditor)</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ImageUrlSmall" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ImageUrlMedium" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ImageUrlLarge" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonListPrice" CustomPrivateName="" CustomColumnName="">
+                  <DataType>decimal</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonOurPrice" CustomPrivateName="" CustomColumnName="">
+                  <DataType>decimal</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonAvailability" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonMedia" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue>string.Empty</DefaultValue>
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonReleaseDate" CustomPrivateName="" CustomColumnName="">
+                  <DataType>DateTime</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AmazonAsin" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>15</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption />
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>False</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="AbstractEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Enable Abstract?</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="ContentsEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Enable Contents?</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="NotesEnabled" CustomPrivateName="" CustomColumnName="">
+                  <DataType>bool</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Enable Notes?</Caption>
+                  <Description />
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Authors" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Authors</Caption>
+                  <Description>Authors</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="SecondaryAuthors" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Secondary Authors</Caption>
+                  <Description>Secondary Authors</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <FieldEntry PropertyName="Publisher" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>255</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Publisher</Caption>
+                  <Description>Publisher</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>True</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+                <ChildEntry PropertyName="MediaType">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>YariMediaType</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Yari</DataTypeNameSpace>
+                  <Caption>Reference Type</Caption>
+                  <Description>Type of reference this book is.</Description>
+                  <IsTableCoded>True</IsTableCoded>
+                  <TableName>kitYari_BookReferenceTypes</TableName>
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Normal</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>True</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>True</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>True</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+                <ChildEntry PropertyName="Keywords">
+                  <CustomPrivateName />
+                  <CustomColumnName />
+                  <DataType>YariMediaKeyword</DataType>
+                  <DataTypeNameSpace>Amns.GreyFox.Yari</DataTypeNameSpace>
+                  <Caption />
+                  <Description />
+                  <IsTableCoded>True</IsTableCoded>
+                  <TableName>kitYari_Keywords</TableName>
+                  <IsUnique>False</IsUnique>
+                  <ChildEntryType>Collection</ChildEntryType>
+                  <Group />
+                  <CascadeSaveEnabled>True</CascadeSaveEnabled>
+                  <EnableCache>False</EnableCache>
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <IsClientCollectionAddEnabled>False</IsClientCollectionAddEnabled>
+                  <IsClientCollectionDeleteEnabled>False</IsClientCollectionDeleteEnabled>
+                  <IsClientCollectionEditEnabled>False</IsClientCollectionEditEnabled>
+                  <MetaAttributes />
+                </ChildEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="_system">
+              <Guid>30a14ded-fd33-44a8-8dc8-4da8d2e69bc3</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+        <ClassObject Name="YariMediaType" NameSpace="Amns.GreyFox.Yari">
+          <OutputPath>..\Amns.GreyFox.Yari</OutputPath>
+          <WebOutputPath />
+          <DefaultTableName>kitYari_MediaTypes</DefaultTableName>
+          <DefaultTableNameHardCoded>True</DefaultTableNameHardCoded>
+          <Caption />
+          <Description />
+          <Summary>Summary of MyClass</Summary>
+          <IsCachingEnabled>False</IsCachingEnabled>
+          <CacheClass>CabCache</CacheClass>
+          <CacheName />
+          <CacheLifetime>00:30:00</CacheLifetime>
+          <IsCollectionCachingEnabled>False</IsCollectionCachingEnabled>
+          <CollectionCacheLifetime>00:05:00</CollectionCacheLifetime>
+          <Concurrency>None</Concurrency>
+          <IsThreadSafe>False</IsThreadSafe>
+          <Interfaces />
+          <ToStringOverride />
+          <SimpleQueryEnabled>False</SimpleQueryEnabled>
+          <ClassFolders>
+            <ClassFolder Name="Default">
+              <Guid>876954a0-80af-479f-b6a3-3253e419f0df</Guid>
+              <Caption />
+              <Description />
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>False</IsReadOnly>
+              <IsBrowsable>True</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items>
+                <FieldEntry PropertyName="Name" CustomPrivateName="" CustomColumnName="">
+                  <DataType>string</DataType>
+                  <Length>75</Length>
+                  <DefaultFormat />
+                  <DefaultValue />
+                  <Caption>Name</Caption>
+                  <Description>The name of the media reference type.</Description>
+                  <ValidatorRequired>False</ValidatorRequired>
+                  <ValidatorRegEx />
+                  <ValidatorError />
+                  <IsNullable>False</IsNullable>
+                  <NullValue />
+                  <UseDefaultValueOnNull>False</UseDefaultValueOnNull>
+                  <IsIndexed>False</IsIndexed>
+                  <IsUnique>False</IsUnique>
+                  <Group />
+                  <IsClientGridEnabled>False</IsClientGridEnabled>
+                  <IsClientEditEnabled>True</IsClientEditEnabled>
+                  <IsClientViewEnabled>True</IsClientViewEnabled>
+                  <MetaAttributes />
+                </FieldEntry>
+              </Items>
+            </ClassFolder>
+            <ClassFolder Name="_system">
+              <Guid>3e37b0b2-e828-4af9-8b38-a7dfd80885d2</Guid>
+              <Caption>System Folder</Caption>
+              <Description>Internal system folder for supporting dbModel class entry options.</Description>
+              <IsExpanded>False</IsExpanded>
+              <IsItemListExpanded>False</IsItemListExpanded>
+              <IsReadOnly>True</IsReadOnly>
+              <IsBrowsable>False</IsBrowsable>
+              <IsPartition>False</IsPartition>
+              <DataMode>Integrated</DataMode>
+              <Items />
+            </ClassFolder>
+          </ClassFolders>
+          <OutputPlugins />
+          <MetaAttributes>
+            <MetaAttribute Name="WindowTab">
+              <Value>tabCaching</Value>
+            </MetaAttribute>
+            <MetaAttribute Name="WindowData">
+              <Value>False,50,50,500,525</Value>
+            </MetaAttribute>
+          </MetaAttributes>
+        </ClassObject>
+      </Items>
+    </ModelFolder>
+  </ModelFolders>
+</dbModel>

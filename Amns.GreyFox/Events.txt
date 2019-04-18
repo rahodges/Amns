@@ -1,0 +1,20 @@
+EVENT TYPES
+==================================================
+15			Information
+28			Warning
+29			Critical Error
+100			Audit Event Success
+105			Audit Event Failure
+
+EVENT ID
+==================================================
+10000		DEFAULT KERNEL EVENT
+10003			Kernel Start							15
+10004			Kernal Start Failure					29
+
+
+25000		DEFAULT AUDIT EVENT
+25001			Login Success							100
+25104			Login Failure; invalid username.		105
+25105			Login Failure; invalid password.		105
+25110			Login Failure; user disabled.			105

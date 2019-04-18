@@ -1,0 +1,376 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using Amns.GreyFox.Security;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for GreyFoxUserPreference.
+	/// </summary>
+	[ToolboxData("<{0}:GreyFoxUserPreferenceEditor runat=server></{0}:GreyFoxUserPreferenceEditor>")]
+	public class GreyFoxUserPreferenceEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int greyFoxUserPreferenceID;
+		private GreyFoxUserPreference obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		#region Private Control Fields for New_Folder Folder
+
+		protected ComponentArt.Web.UI.PageView New_FolderView;
+		private ComponentArt.Web.UI.ComboBox comboUser;
+		private TextBox tbName;
+		private TextBox tbPrefValue;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int GreyFoxUserPreferenceID
+		{
+			get
+			{
+				return greyFoxUserPreferenceID;
+			}
+			set
+			{
+				loadFlag = true;
+				greyFoxUserPreferenceID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for New Folder Folder
+
+			New_FolderView = new ComponentArt.Web.UI.PageView();
+			New_FolderView.CssClass = "PageContent";
+			multipage.PageViews.Add(New_FolderView);
+
+			TabStripTab New_FolderTab = new TabStripTab();
+			New_FolderTab.Text = "New Folder";
+			New_FolderTab.PageViewId = New_FolderView.ID;
+			tabstrip.Tabs.Add(New_FolderTab);
+
+			New_FolderView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">User</span>"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboUser = new ComponentArt.Web.UI.ComboBox();
+			comboUser.CssClass = "comboBox";
+			comboUser.HoverCssClass = "comboBoxHover";
+			comboUser.FocusedCssClass = "comboBoxHover";
+			comboUser.TextBoxCssClass = "comboTextBox";
+			comboUser.DropDownCssClass = "comboDropDown";
+			comboUser.ItemCssClass = "comboItem";
+			comboUser.ItemHoverCssClass = "comboItemHover";
+			comboUser.SelectedItemCssClass = "comboItemHover";
+			comboUser.DropHoverImageUrl = "images/drop_hover.gif";
+			comboUser.DropImageUrl = "images/drop.gif";
+			comboUser.Width = Unit.Pixel(300);
+			New_FolderView.Controls.Add(comboUser);
+			New_FolderView.Controls.Add(new LiteralControl("</span></div>"));
+
+			New_FolderView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Name</span>"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbName = new TextBox();
+			tbName.EnableViewState = false;
+			New_FolderView.Controls.Add(tbName);
+			New_FolderView.Controls.Add(new LiteralControl("</span></div>"));
+
+			New_FolderView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">PrefValue</span>"));
+			New_FolderView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPrefValue = new TextBox();
+			tbPrefValue.EnableViewState = false;
+			New_FolderView.Controls.Add(tbPrefValue);
+			New_FolderView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+			#region Bind New Folder Child Data
+
+			GreyFoxUserManager userManager = new GreyFoxUserManager();
+			GreyFoxUserCollection userCollection = userManager.GetCollection(string.Empty, string.Empty, null);
+			ComponentArt.Web.UI.ComboBoxItem UserNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			UserNullItem.Text = "Null";
+			UserNullItem.Value = "Null";
+			comboUser.Items.Add(UserNullItem);
+			foreach(GreyFoxUser user in userCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = user.ToString();
+				i.Value = user.ID.ToString();
+				comboUser.Items.Add(i);
+			}
+
+			#endregion
+
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(greyFoxUserPreferenceID == 0)
+				obj = new GreyFoxUserPreference();
+			else
+				obj = new GreyFoxUserPreference(greyFoxUserPreferenceID);
+
+			if(comboUser.SelectedItem != null && comboUser.SelectedItem.Value != "Null")
+				obj.User = GreyFoxUser.NewPlaceHolder(
+					int.Parse(comboUser.SelectedItem.Value));
+			else
+				obj.User = null;
+
+			obj.Name = tbName.Text;
+			obj.PrefValue = tbPrefValue.Text;
+			if(editOnAdd)
+				greyFoxUserPreferenceID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbName.Text = string.Empty;
+				tbPrefValue.Text = string.Empty;
+				msUser.SelectedIndex = 0;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(greyFoxUserPreferenceID > 0)
+				{
+					obj = new GreyFoxUserPreference(greyFoxUserPreferenceID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(greyFoxUserPreferenceID <= 0)
+				{
+					obj = new GreyFoxUserPreference();
+					headerText.Text = "Add ";
+				}
+
+				// Bind New Folder Data
+				if(obj.User != null)
+					foreach(ListItem item in comboUser.Items)
+						item.Selected = obj.User.ID.ToString() == item.Value;
+					else
+						msUser.SelectedIndex = 0;
+				tbName.Text = obj.Name;
+				tbPrefValue.Text = obj.PrefValue;
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					greyFoxUserPreferenceID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = greyFoxUserPreferenceID;
+			return myState;
+		}
+	}
+}
+

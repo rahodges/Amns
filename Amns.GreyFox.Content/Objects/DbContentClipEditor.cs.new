@@ -1,0 +1,979 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using FreeTextBoxControls;
+using Amns.GreyFox.Web.UI.WebControls;
+using Amns.GreyFox.Security;
+
+namespace Amns.GreyFox.Content.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for DbContentClip.
+	/// </summary>
+	[ToolboxData("<{0}:DbContentClipEditor runat=server></{0}:DbContentClipEditor>")]
+	public class DbContentClipEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int dbContentClipID;
+		private DbContentClip obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+		private Literal ltCreateDate;
+		private Literal ltModifyDate;
+
+		#endregion
+
+		#region Private Control Fields for General Folder
+
+		protected ComponentArt.Web.UI.PageView GeneralView;
+		private TextBox tbTitle;
+		private TextBox tbDescription;
+		private TextBox tbKeywords;
+		private TextBox tbIcon;
+		private ComponentArt.Web.UI.ComboBox comboStatus;
+
+		#endregion
+
+		#region Private Control Fields for Body Folder
+
+		protected ComponentArt.Web.UI.PageView BodyView;
+		private FreeTextBox ftbBody;
+
+		#endregion
+
+		#region Private Control Fields for Publishing Folder
+
+		protected ComponentArt.Web.UI.PageView PublishingView;
+		private ComponentArt.Web.UI.ComboBox comboParentCatalog;
+		private DateEditor dePublishDate;
+		private DateEditor deExpirationDate;
+		private DateEditor deArchiveDate;
+		private TextBox tbPriority;
+		private RegularExpressionValidator revPriority;
+		private TextBox tbSortOrder;
+		private RegularExpressionValidator revSortOrder;
+		private ComponentArt.Web.UI.ComboBox comboRating;
+		private MultiSelectBox msReferences;
+		private CheckBox cbCommentsEnabled;
+		private CheckBox cbNotifyOnComments;
+		private TextBox tbOverrideUrl;
+
+		#endregion
+
+		#region Private Control Fields for Contributors Folder
+
+		protected ComponentArt.Web.UI.PageView ContributorsView;
+		private MultiSelectBox msAuthors;
+		private MultiSelectBox msEditors;
+
+		#endregion
+
+		#region Private Control Fields for Menu Folder
+
+		protected ComponentArt.Web.UI.PageView MenuView;
+		private TextBox tbMenuLabel;
+		private TextBox tbMenuTooltip;
+		private CheckBox cbMenuEnabled;
+		private TextBox tbMenuOrder;
+		private RegularExpressionValidator revMenuOrder;
+		private TextBox tbMenuLeftIcon;
+		private TextBox tbMenuLeftIconOver;
+		private TextBox tbMenuRightIcon;
+		private TextBox tbMenuRightIconOver;
+		private CheckBox cbMenuBreak;
+
+		#endregion
+
+		#region Private Control Fields for Security Folder
+
+		protected ComponentArt.Web.UI.PageView SecurityView;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int DbContentClipID
+		{
+			get
+			{
+				return dbContentClipID;
+			}
+			set
+			{
+				loadFlag = true;
+				dbContentClipID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for _system Folder
+
+			_systemView = new ComponentArt.Web.UI.PageView();
+			_systemView.CssClass = "PageContent";
+			multipage.PageViews.Add(_systemView);
+
+			TabStripTab _systemTab = new TabStripTab();
+			_systemTab.Text = "_system";
+			_systemTab.PageViewId = _systemView.ID;
+			tabstrip.Tabs.Add(_systemTab);
+
+			_systemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			_systemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">CreateDate</span>"));
+			_systemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltCreateDate = new Literal();
+			ltCreateDate.EnableViewState = false;
+			_systemView.Controls.Add(ltCreateDate);
+			_systemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			_systemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			_systemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ModifyDate</span>"));
+			_systemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ltModifyDate = new Literal();
+			ltModifyDate.EnableViewState = false;
+			_systemView.Controls.Add(ltModifyDate);
+			_systemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for General Folder
+
+			GeneralView = new ComponentArt.Web.UI.PageView();
+			GeneralView.CssClass = "PageContent";
+			multipage.PageViews.Add(GeneralView);
+
+			TabStripTab GeneralTab = new TabStripTab();
+			GeneralTab.Text = "General";
+			GeneralTab.PageViewId = GeneralView.ID;
+			tabstrip.Tabs.Add(GeneralTab);
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Title</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbTitle = new TextBox();
+			tbTitle.EnableViewState = false;
+			GeneralView.Controls.Add(tbTitle);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Description</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbDescription = new TextBox();
+			tbDescription.EnableViewState = false;
+			GeneralView.Controls.Add(tbDescription);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Keywords</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbKeywords = new TextBox();
+			tbKeywords.EnableViewState = false;
+			GeneralView.Controls.Add(tbKeywords);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Icon</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbIcon = new TextBox();
+			tbIcon.EnableViewState = false;
+			GeneralView.Controls.Add(tbIcon);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			GeneralView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Status</span>"));
+			GeneralView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboStatus = new ComponentArt.Web.UI.ComboBox();
+			comboStatus.CssClass = "comboBox";
+			comboStatus.HoverCssClass = "comboBoxHover";
+			comboStatus.FocusedCssClass = "comboBoxHover";
+			comboStatus.TextBoxCssClass = "comboTextBox";
+			comboStatus.DropDownCssClass = "comboDropDown";
+			comboStatus.ItemCssClass = "comboItem";
+			comboStatus.ItemHoverCssClass = "comboItemHover";
+			comboStatus.SelectedItemCssClass = "comboItemHover";
+			comboStatus.DropHoverImageUrl = "images/drop_hover.gif";
+			comboStatus.DropImageUrl = "images/drop.gif";
+			comboStatus.Width = Unit.Pixel(300);
+			GeneralView.Controls.Add(comboStatus);
+			GeneralView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Body Folder
+
+			BodyView = new ComponentArt.Web.UI.PageView();
+			BodyView.CssClass = "PageContent";
+			multipage.PageViews.Add(BodyView);
+
+			TabStripTab BodyTab = new TabStripTab();
+			BodyTab.Text = "Body";
+			BodyTab.PageViewId = BodyView.ID;
+			tabstrip.Tabs.Add(BodyTab);
+
+			BodyView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			BodyView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Content</span>"));
+			BodyView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			ftbBody = new FreeTextBox();
+			ftbBody.ID = this.ID + "_Body";
+			ftbBody.Width = Unit.Percentage(100);
+			ftbBody.EnableViewState = false;
+			BodyView.Controls.Add(ftbBody);
+			BodyView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Publishing Folder
+
+			PublishingView = new ComponentArt.Web.UI.PageView();
+			PublishingView.CssClass = "PageContent";
+			multipage.PageViews.Add(PublishingView);
+
+			TabStripTab PublishingTab = new TabStripTab();
+			PublishingTab.Text = "Publishing";
+			PublishingTab.PageViewId = PublishingView.ID;
+			tabstrip.Tabs.Add(PublishingTab);
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Parent Catalog</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboParentCatalog = new ComponentArt.Web.UI.ComboBox();
+			comboParentCatalog.CssClass = "comboBox";
+			comboParentCatalog.HoverCssClass = "comboBoxHover";
+			comboParentCatalog.FocusedCssClass = "comboBoxHover";
+			comboParentCatalog.TextBoxCssClass = "comboTextBox";
+			comboParentCatalog.DropDownCssClass = "comboDropDown";
+			comboParentCatalog.ItemCssClass = "comboItem";
+			comboParentCatalog.ItemHoverCssClass = "comboItemHover";
+			comboParentCatalog.SelectedItemCssClass = "comboItemHover";
+			comboParentCatalog.DropHoverImageUrl = "images/drop_hover.gif";
+			comboParentCatalog.DropImageUrl = "images/drop.gif";
+			comboParentCatalog.Width = Unit.Pixel(300);
+			PublishingView.Controls.Add(comboParentCatalog);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Publish Date</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			dePublishDate = new DateEditor();
+			dePublishDate.ID = this.ID + "_PublishDate";
+			dePublishDate.AutoAdjust = true;
+			dePublishDate.EnableViewState = false;
+			PublishingView.Controls.Add(dePublishDate);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Expiration Date</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			deExpirationDate = new DateEditor();
+			deExpirationDate.ID = this.ID + "_ExpirationDate";
+			deExpirationDate.AutoAdjust = true;
+			deExpirationDate.EnableViewState = false;
+			PublishingView.Controls.Add(deExpirationDate);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Archive Date</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			deArchiveDate = new DateEditor();
+			deArchiveDate.ID = this.ID + "_ArchiveDate";
+			deArchiveDate.AutoAdjust = true;
+			deArchiveDate.EnableViewState = false;
+			PublishingView.Controls.Add(deArchiveDate);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Priority</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPriority = new TextBox();
+			tbPriority.ID = this.ID + "_Priority";
+			tbPriority.EnableViewState = false;
+			PublishingView.Controls.Add(tbPriority);
+			revPriority = new RegularExpressionValidator();
+			revPriority.ControlToValidate = tbPriority.ID;
+			revPriority.ValidationExpression = "^(\\+|-)?\\d+$";
+			revPriority.ErrorMessage = "*";
+			revPriority.Display = ValidatorDisplay.Dynamic;
+			revPriority.EnableViewState = false;
+			PublishingView.Controls.Add(revPriority);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">SortOrder</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbSortOrder = new TextBox();
+			tbSortOrder.ID = this.ID + "_SortOrder";
+			tbSortOrder.EnableViewState = false;
+			PublishingView.Controls.Add(tbSortOrder);
+			revSortOrder = new RegularExpressionValidator();
+			revSortOrder.ControlToValidate = tbSortOrder.ID;
+			revSortOrder.ValidationExpression = "^(\\+|-)?\\d+$";
+			revSortOrder.ErrorMessage = "*";
+			revSortOrder.Display = ValidatorDisplay.Dynamic;
+			revSortOrder.EnableViewState = false;
+			PublishingView.Controls.Add(revSortOrder);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Rating</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboRating = new ComponentArt.Web.UI.ComboBox();
+			comboRating.CssClass = "comboBox";
+			comboRating.HoverCssClass = "comboBoxHover";
+			comboRating.FocusedCssClass = "comboBoxHover";
+			comboRating.TextBoxCssClass = "comboTextBox";
+			comboRating.DropDownCssClass = "comboDropDown";
+			comboRating.ItemCssClass = "comboItem";
+			comboRating.ItemHoverCssClass = "comboItemHover";
+			comboRating.SelectedItemCssClass = "comboItemHover";
+			comboRating.DropHoverImageUrl = "images/drop_hover.gif";
+			comboRating.DropImageUrl = "images/drop.gif";
+			comboRating.Width = Unit.Pixel(300);
+			PublishingView.Controls.Add(comboRating);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Cross References</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msReferences = new MultiSelectBox();
+			msReferences.Mode = MultiSelectBoxMode.DualSelect;
+			PublishingView.Controls.Add(msReferences);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">CommentsEnabled</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbCommentsEnabled = new CheckBox();
+			cbCommentsEnabled.EnableViewState = false;
+			PublishingView.Controls.Add(cbCommentsEnabled);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">NotifyOnComments</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbNotifyOnComments = new CheckBox();
+			cbNotifyOnComments.EnableViewState = false;
+			PublishingView.Controls.Add(cbNotifyOnComments);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">WorkingDraft</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			PublishingView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">OverrideUrl</span>"));
+			PublishingView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbOverrideUrl = new TextBox();
+			tbOverrideUrl.EnableViewState = false;
+			PublishingView.Controls.Add(tbOverrideUrl);
+			PublishingView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Contributors Folder
+
+			ContributorsView = new ComponentArt.Web.UI.PageView();
+			ContributorsView.CssClass = "PageContent";
+			multipage.PageViews.Add(ContributorsView);
+
+			TabStripTab ContributorsTab = new TabStripTab();
+			ContributorsTab.Text = "Contributors";
+			ContributorsTab.PageViewId = ContributorsView.ID;
+			tabstrip.Tabs.Add(ContributorsTab);
+
+			ContributorsView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			ContributorsView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Authors</span>"));
+			ContributorsView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msAuthors = new MultiSelectBox();
+			msAuthors.Mode = MultiSelectBoxMode.DualSelect;
+			ContributorsView.Controls.Add(msAuthors);
+			ContributorsView.Controls.Add(new LiteralControl("</span></div>"));
+
+			ContributorsView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			ContributorsView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Editors</span>"));
+			ContributorsView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msEditors = new MultiSelectBox();
+			msEditors.Mode = MultiSelectBoxMode.DualSelect;
+			ContributorsView.Controls.Add(msEditors);
+			ContributorsView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Menu Folder
+
+			MenuView = new ComponentArt.Web.UI.PageView();
+			MenuView.CssClass = "PageContent";
+			multipage.PageViews.Add(MenuView);
+
+			TabStripTab MenuTab = new TabStripTab();
+			MenuTab.Text = "Menu";
+			MenuTab.PageViewId = MenuView.ID;
+			tabstrip.Tabs.Add(MenuTab);
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuLabel</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuLabel = new TextBox();
+			tbMenuLabel.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuLabel);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuTooltip</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuTooltip = new TextBox();
+			tbMenuTooltip.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuTooltip);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuEnabled</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbMenuEnabled = new CheckBox();
+			cbMenuEnabled.EnableViewState = false;
+			MenuView.Controls.Add(cbMenuEnabled);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuOrder</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuOrder = new TextBox();
+			tbMenuOrder.ID = this.ID + "_MenuOrder";
+			tbMenuOrder.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuOrder);
+			revMenuOrder = new RegularExpressionValidator();
+			revMenuOrder.ControlToValidate = tbMenuOrder.ID;
+			revMenuOrder.ValidationExpression = "^(\\+|-)?\\d+$";
+			revMenuOrder.ErrorMessage = "*";
+			revMenuOrder.Display = ValidatorDisplay.Dynamic;
+			revMenuOrder.EnableViewState = false;
+			MenuView.Controls.Add(revMenuOrder);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuLeftIcon</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuLeftIcon = new TextBox();
+			tbMenuLeftIcon.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuLeftIcon);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuLeftIconOver</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuLeftIconOver = new TextBox();
+			tbMenuLeftIconOver.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuLeftIconOver);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuRightIcon</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuRightIcon = new TextBox();
+			tbMenuRightIcon.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuRightIcon);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuRightIconOver</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMenuRightIconOver = new TextBox();
+			tbMenuRightIconOver.EnableViewState = false;
+			MenuView.Controls.Add(tbMenuRightIconOver);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			MenuView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">MenuBreak</span>"));
+			MenuView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbMenuBreak = new CheckBox();
+			cbMenuBreak.EnableViewState = false;
+			MenuView.Controls.Add(cbMenuBreak);
+			MenuView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+			#region Bind General Child Data
+
+			DbContentStatusManager statusManager = new DbContentStatusManager();
+			DbContentStatusCollection statusCollection = statusManager.GetCollection(string.Empty, string.Empty);
+			ComponentArt.Web.UI.ComboBoxItem StatusNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			StatusNullItem.Text = "Null";
+			StatusNullItem.Value = "Null";
+			comboStatus.Items.Add(StatusNullItem);
+			foreach(DbContentStatus status in statusCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = status.ToString();
+				i.Value = status.ID.ToString();
+				comboStatus.Items.Add(i);
+			}
+
+			#endregion
+
+			#region Bind Publishing Child Data
+
+			DbContentCatalogManager parentCatalogManager = new DbContentCatalogManager();
+			DbContentCatalogCollection parentCatalogCollection = parentCatalogManager.GetCollection(string.Empty, string.Empty, null);
+			ComponentArt.Web.UI.ComboBoxItem ParentCatalogNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			ParentCatalogNullItem.Text = "Null";
+			ParentCatalogNullItem.Value = "Null";
+			comboParentCatalog.Items.Add(ParentCatalogNullItem);
+			foreach(DbContentCatalog parentCatalog in parentCatalogCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = parentCatalog.ToString();
+				i.Value = parentCatalog.ID.ToString();
+				comboParentCatalog.Items.Add(i);
+			}
+
+			DbContentRatingManager ratingManager = new DbContentRatingManager();
+			DbContentRatingCollection ratingCollection = ratingManager.GetCollection(string.Empty, string.Empty, null);
+			ComponentArt.Web.UI.ComboBoxItem RatingNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			RatingNullItem.Text = "Null";
+			RatingNullItem.Value = "Null";
+			comboRating.Items.Add(RatingNullItem);
+			foreach(DbContentRating rating in ratingCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = rating.ToString();
+				i.Value = rating.ID.ToString();
+				comboRating.Items.Add(i);
+			}
+
+			DbContentClipManager referencesManager = new DbContentClipManager();
+			DbContentClipCollection referencesCollection = referencesManager.GetCollection(string.Empty, string.Empty, null);
+			msReferences.Items.Add(new ListItem("Null", "Null"));
+			foreach(DbContentClip references in referencesCollection)
+			{
+				ListItem i = new ListItem(references.ToString(), references.ID.ToString());
+				msReferences.Items.Add(i);
+			}
+
+			#endregion
+
+			#region Bind Contributors Child Data
+
+			GreyFoxUserManager authorsManager = new GreyFoxUserManager();
+			GreyFoxUserCollection authorsCollection = authorsManager.GetCollection(string.Empty, string.Empty, null);
+			msAuthors.Items.Add(new ListItem("Null", "Null"));
+			foreach(GreyFoxUser authors in authorsCollection)
+			{
+				ListItem i = new ListItem(authors.ToString(), authors.ID.ToString());
+				msAuthors.Items.Add(i);
+			}
+
+			GreyFoxUserManager editorsManager = new GreyFoxUserManager();
+			GreyFoxUserCollection editorsCollection = editorsManager.GetCollection(string.Empty, string.Empty, null);
+			msEditors.Items.Add(new ListItem("Null", "Null"));
+			foreach(GreyFoxUser editors in editorsCollection)
+			{
+				ListItem i = new ListItem(editors.ToString(), editors.ID.ToString());
+				msEditors.Items.Add(i);
+			}
+
+			#endregion
+
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(dbContentClipID == 0)
+				obj = new DbContentClip();
+			else
+				obj = new DbContentClip(dbContentClipID);
+
+			obj.Title = tbTitle.Text;
+			obj.Description = tbDescription.Text;
+			obj.Keywords = tbKeywords.Text;
+			obj.Icon = tbIcon.Text;
+			if(comboStatus.SelectedItem != null && comboStatus.SelectedItem.Value != "Null")
+				obj.Status = DbContentStatus.NewPlaceHolder(
+					int.Parse(comboStatus.SelectedItem.Value));
+			else
+				obj.Status = null;
+
+			obj.Body = ftbBody.Text;
+			if(comboParentCatalog.SelectedItem != null && comboParentCatalog.SelectedItem.Value != "Null")
+				obj.ParentCatalog = DbContentCatalog.NewPlaceHolder(
+					int.Parse(comboParentCatalog.SelectedItem.Value));
+			else
+				obj.ParentCatalog = null;
+
+			obj.PublishDate = dePublishDate.Date;
+			obj.ExpirationDate = deExpirationDate.Date;
+			obj.ArchiveDate = deArchiveDate.Date;
+			obj.Priority = int.Parse(tbPriority.Text);
+			obj.SortOrder = int.Parse(tbSortOrder.Text);
+			if(comboRating.SelectedItem != null && comboRating.SelectedItem.Value != "Null")
+				obj.Rating = DbContentRating.NewPlaceHolder(
+					int.Parse(comboRating.SelectedItem.Value));
+			else
+				obj.Rating = null;
+
+			if(msReferences.IsChanged)
+			{
+				obj.References = new DbContentClipCollection();
+				foreach(ListItem i in msReferences.Items)
+					if(i.Selected)
+						obj.References.Add(DbContentClip.NewPlaceHolder(int.Parse(i.Value)));
+			}
+
+			obj.CommentsEnabled = cbCommentsEnabled.Checked;
+			obj.NotifyOnComments = cbNotifyOnComments.Checked;
+			obj.OverrideUrl = tbOverrideUrl.Text;
+			if(msAuthors.IsChanged)
+			{
+				obj.Authors = new GreyFoxUserCollection();
+				foreach(ListItem i in msAuthors.Items)
+					if(i.Selected)
+						obj.Authors.Add(GreyFoxUser.NewPlaceHolder(int.Parse(i.Value)));
+			}
+
+			if(msEditors.IsChanged)
+			{
+				obj.Editors = new GreyFoxUserCollection();
+				foreach(ListItem i in msEditors.Items)
+					if(i.Selected)
+						obj.Editors.Add(GreyFoxUser.NewPlaceHolder(int.Parse(i.Value)));
+			}
+
+			obj.MenuLabel = tbMenuLabel.Text;
+			obj.MenuTooltip = tbMenuTooltip.Text;
+			obj.MenuEnabled = cbMenuEnabled.Checked;
+			obj.MenuOrder = int.Parse(tbMenuOrder.Text);
+			obj.MenuLeftIcon = tbMenuLeftIcon.Text;
+			obj.MenuLeftIconOver = tbMenuLeftIconOver.Text;
+			obj.MenuRightIcon = tbMenuRightIcon.Text;
+			obj.MenuRightIconOver = tbMenuRightIconOver.Text;
+			obj.MenuBreak = cbMenuBreak.Checked;
+			if(editOnAdd)
+				dbContentClipID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbTitle.Text = string.Empty;
+				tbDescription.Text = string.Empty;
+				tbKeywords.Text = string.Empty;
+				tbIcon.Text = string.Empty;
+				ftbBody.Text = string.Empty;
+				dePublishDate.Date = DateTime.Now;
+				deExpirationDate.Date = DateTime.Now;
+				deArchiveDate.Date = DateTime.Now;
+				tbPriority.Text = string.Empty;
+				tbSortOrder.Text = string.Empty;
+				cbCommentsEnabled.Checked = false;
+				cbNotifyOnComments.Checked = false;
+				tbOverrideUrl.Text = string.Empty;
+				tbMenuLabel.Text = string.Empty;
+				tbMenuTooltip.Text = string.Empty;
+				cbMenuEnabled.Checked = false;
+				tbMenuOrder.Text = string.Empty;
+				tbMenuLeftIcon.Text = string.Empty;
+				tbMenuLeftIconOver.Text = string.Empty;
+				tbMenuRightIcon.Text = string.Empty;
+				tbMenuRightIconOver.Text = string.Empty;
+				cbMenuBreak.Checked = false;
+				msStatus.SelectedIndex = 0;
+				msParentCatalog.SelectedIndex = 0;
+				msRating.SelectedIndex = 0;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(dbContentClipID > 0)
+				{
+					obj = new DbContentClip(dbContentClipID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(dbContentClipID <= 0)
+				{
+					obj = new DbContentClip();
+					headerText.Text = "Add ";
+				}
+
+				// Bind _system Data
+				ltCreateDate.Text = obj.CreateDate.ToString();
+				ltModifyDate.Text = obj.ModifyDate.ToString();
+
+				// Bind General Data
+				tbTitle.Text = obj.Title;
+				tbDescription.Text = obj.Description;
+				tbKeywords.Text = obj.Keywords;
+				tbIcon.Text = obj.Icon;
+				if(obj.Status != null)
+					foreach(ListItem item in comboStatus.Items)
+						item.Selected = obj.Status.ID.ToString() == item.Value;
+					else
+						msStatus.SelectedIndex = 0;
+
+				// Bind Body Data
+				ftbBody.Text = obj.Body;
+
+				// Bind Publishing Data
+				if(obj.ParentCatalog != null)
+					foreach(ListItem item in comboParentCatalog.Items)
+						item.Selected = obj.ParentCatalog.ID.ToString() == item.Value;
+					else
+						msParentCatalog.SelectedIndex = 0;
+				dePublishDate.Date = obj.PublishDate;
+				deExpirationDate.Date = obj.ExpirationDate;
+				deArchiveDate.Date = obj.ArchiveDate;
+				tbPriority.Text = obj.Priority.ToString();
+				tbSortOrder.Text = obj.SortOrder.ToString();
+				if(obj.Rating != null)
+					foreach(ListItem item in comboRating.Items)
+						item.Selected = obj.Rating.ID.ToString() == item.Value;
+					else
+						msRating.SelectedIndex = 0;
+				foreach(ListItem i in msReferences.Items)
+					foreach(DbContentClip dbContentClip in obj.References)
+						if(i.Value == dbContentClip.ID.ToString())
+						{
+							i.Selected = true;
+							break;
+						}
+				cbCommentsEnabled.Checked = obj.CommentsEnabled;
+				cbNotifyOnComments.Checked = obj.NotifyOnComments;
+				tbOverrideUrl.Text = obj.OverrideUrl;
+
+				// Bind Contributors Data
+				foreach(ListItem i in msAuthors.Items)
+					foreach(GreyFoxUser greyFoxUser in obj.Authors)
+						if(i.Value == greyFoxUser.ID.ToString())
+						{
+							i.Selected = true;
+							break;
+						}
+				foreach(ListItem i in msEditors.Items)
+					foreach(GreyFoxUser greyFoxUser in obj.Editors)
+						if(i.Value == greyFoxUser.ID.ToString())
+						{
+							i.Selected = true;
+							break;
+						}
+
+				// Bind Menu Data
+				tbMenuLabel.Text = obj.MenuLabel;
+				tbMenuTooltip.Text = obj.MenuTooltip;
+				cbMenuEnabled.Checked = obj.MenuEnabled;
+				tbMenuOrder.Text = obj.MenuOrder.ToString();
+				tbMenuLeftIcon.Text = obj.MenuLeftIcon;
+				tbMenuLeftIconOver.Text = obj.MenuLeftIconOver;
+				tbMenuRightIcon.Text = obj.MenuRightIcon;
+				tbMenuRightIconOver.Text = obj.MenuRightIconOver;
+				cbMenuBreak.Checked = obj.MenuBreak;
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					dbContentClipID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = dbContentClipID;
+			return myState;
+		}
+	}
+}
+

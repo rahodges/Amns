@@ -1,0 +1,615 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE092059-B12B-4DCF-AE1E-DB154D593EE8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Amns.GreyFox</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Amns.GreyFox</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Amns.GreyFox/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentArt.Web.UI, Version=2007.2.1411.35, Culture=neutral, PublicKeyToken=9bc9f846553156bb, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.TeamSystem.Data.UnitTesting, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="ADODB">
+      <Guid>{2A75196C-D9EB-4129-B803-931327F72D5C}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="ADOX">
+      <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="JRO">
+      <Guid>{AC3B8B4C-B6CA-11D1-9F31-00C04FC29D52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\GreyFoxSetting.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\GreyFoxSettingCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\GreyFoxSettingManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\IniConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CsvParser.cs" />
+    <Compile Include="Data\ExposedManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ExposedManagerCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\IGreyFoxManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ManagerCore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\MsJetUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\MSJetUtilityLockedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SearchQueryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SqlFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\WeightedQueryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\WeightedQueryColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventLog\GreyFoxEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventLog\GreyFoxEventCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventLog\GreyFoxEventIndexedList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventLog\GreyFoxEventManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\GreyFoxFilter.cs" />
+    <Compile Include="Imaging\BitmapTransform.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\BorderFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\Enumerations\ExifEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\ExifCode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\ExifProperties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\Filters\BitmapFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\Filters\ConvMatrix.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\ImageWatermark.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Imaging\WatermarkPosition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Localization\PeopleStrings.de-DE.Designer.cs">
+      <DependentUpon>PeopleStrings.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Localization\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Localization\SecurityStrings.de-DE.Designer.cs">
+      <DependentUpon>SecurityStrings.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Localization\PeopleStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeopleStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\SecurityStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\Strings.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="People\GreyFoxContactMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="People\GreyFoxContactValidationFlag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="People\GreyFoxContact.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="People\GreyFoxContactCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="People\GreyFoxContactManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="People\NameParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scheduling\DateManipulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scheduling\Enumerations.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scheduling\UITimeZone.cs" />
+    <Compile Include="Security\AsciiEncoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CryptoUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxPassword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxRole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxRoleCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxRoleManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUserCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUserManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUserPreference.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUserPreferenceCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GreyFoxUserPreferenceManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\CsvConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\ICsvConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Statistics\SpanItem.cs" />
+    <Compile Include="Statistics\SpanCalc.cs" />
+    <Compile Include="Text\AddressCorrector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Text\PosessionAbbreviation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Text\StreetAbbreviation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Text\TextCorrector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Text\TextReplacementMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Text\TextScanDirection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\SecurityManager.cs" />
+    <Compile Include="Web\Handlers\AssemblyResourceHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxContactEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxEventGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxLogin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxManagerGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxRoleEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxRoleGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxUserEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\AdminControls\GreyFoxUserGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\AboutDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ComboBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ComboBoxBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ControlExtender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DatabaseSetup.cs" />
+    <Compile Include="Web\UI\WebControls\DateChangedEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\DateEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Design\ComboBoxDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Design\TableWindowDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\EvenMoreCornersControl.cs" />
+    <Compile Include="Web\UI\WebControls\Graphs\TableGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\GreyFoxWebControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\HtmlScroller.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\IframeWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\LengthValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\MultiSelectBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\MultiSelectBoxMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\PopupWin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\PopupWinAnchor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\PropertyView.cs" />
+    <Compile Include="Web\UI\WebControls\RadioButtonListRequiredFieldValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\StyleSheetLinker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TableGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TableWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TableWindowComponents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TableWindowFeatures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TableWindowLayoutMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\Styles\TabStripStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\Tab.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\TabList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\TabRenderHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\TabStrip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tabs\TabStripRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\ToolBarUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tooltips\Tooltip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tooltips\TooltipCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tooltips\TooltipFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\Tooltips\TooltipRegister.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\UI\WebControls\TreeView.cs" />
+    <Compile Include="Web\UI\WebControls\ViewPane.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\AttemptProtector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\AttemptProtectorException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\AttemptProtectorResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\CalendarHelper.cs" />
+    <Compile Include="Web\Util\CookieUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\CreditCardUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\PageInterrupt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\PageInterruptType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Util\UserAuthenticator.cs" />
+    <Content Include="ChangeMod.txt" />
+    <Content Include="Events.txt" />
+    <Content Include="ExtRef\ComponentArt.Web.UI.dll">
+    </Content>
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Caching.dll">
+    </Content>
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Common.dll">
+    </Content>
+    <Content Include="ExtRef\Microsoft.Practices.EnterpriseLibrary.Data.dll">
+    </Content>
+    <Content Include="ExtRef\Microsoft.Practices.ObjectBuilder.dll">
+    </Content>
+    <Content Include="Web\UI\WebControls\PopupWin.bmp" />
+    <Content Include="Web\UI\WebControls\PopupWinAnchor.bmp" />
+    <Content Include="Web\UI\WebControls\Scripts\Tabstrip_XP.css" />
+    <EmbeddedResource Include="Imaging\propertyitem.jpg" />
+    <EmbeddedResource Include="Localization\PeopleStrings.de-DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PeopleStrings.de-DE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\SecurityStrings.de-DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SecurityStrings.de-DE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\PeopleStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PeopleStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\SecurityStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SecurityStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.de-DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.de-DE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\Base.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\Drag.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\OptionTransfer.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\SelectBox.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\TableSort.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\TableWindow.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\Tabstrip.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\Toolbar.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\Tooltip.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Scripts\WebControls.js" />
+    <EmbeddedResource Include="Web\UI\WebControls\Tabs\Styles\TabStripStyle.resx">
+      <DependentUpon>TabStripStyle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="GreyFox.NitroGen" />
+    <None Include="Imaging\Imaging.cd" />
+    <None Include="People\People.cd" />
+    <None Include="Scheduling\RecurrencyBase.cs">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Security\Security.cd" />
+    <None Include="Web\UI\WebControls\app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

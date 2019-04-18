@@ -1,0 +1,466 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using Amns.GreyFox.People;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.Security.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for GreyFoxUser.
+	/// </summary>
+	[ToolboxData("<{0}:GreyFoxUserEditor runat=server></{0}:GreyFoxUserEditor>")]
+	public class GreyFoxUserEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int greyFoxUserID;
+		private GreyFoxUser obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for Default Folder
+
+		protected ComponentArt.Web.UI.PageView DefaultView;
+		private TextBox tbUserName;
+		private CheckBox cbIsDisabled;
+		private TextBox tbLoginDate;
+		private TextBox tbLoginCount;
+		private RegularExpressionValidator revLoginCount;
+		private TextBox tbLoginPassword;
+		private ComponentArt.Web.UI.ComboBox comboContact;
+		private MultiSelectBox msRoles;
+		private TextBox tbActivationID;
+
+		#endregion
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int GreyFoxUserID
+		{
+			get
+			{
+				return greyFoxUserID;
+			}
+			set
+			{
+				loadFlag = true;
+				greyFoxUserID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for Default Folder
+
+			DefaultView = new ComponentArt.Web.UI.PageView();
+			DefaultView.CssClass = "PageContent";
+			multipage.PageViews.Add(DefaultView);
+
+			TabStripTab DefaultTab = new TabStripTab();
+			DefaultTab.Text = "Default";
+			DefaultTab.PageViewId = DefaultView.ID;
+			tabstrip.Tabs.Add(DefaultTab);
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Username</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbUserName = new TextBox();
+			tbUserName.EnableViewState = false;
+			DefaultView.Controls.Add(tbUserName);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Disable user account.</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbIsDisabled = new CheckBox();
+			cbIsDisabled.EnableViewState = false;
+			DefaultView.Controls.Add(cbIsDisabled);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">LoginDate</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbLoginDate = new TextBox();
+			tbLoginDate.EnableViewState = false;
+			DefaultView.Controls.Add(tbLoginDate);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">LoginCount</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbLoginCount = new TextBox();
+			tbLoginCount.ID = this.ID + "_LoginCount";
+			tbLoginCount.EnableViewState = false;
+			DefaultView.Controls.Add(tbLoginCount);
+			revLoginCount = new RegularExpressionValidator();
+			revLoginCount.ControlToValidate = tbLoginCount.ID;
+			revLoginCount.ValidationExpression = "^(\\+|-)?\\d+$";
+			revLoginCount.ErrorMessage = "*";
+			revLoginCount.Display = ValidatorDisplay.Dynamic;
+			revLoginCount.EnableViewState = false;
+			DefaultView.Controls.Add(revLoginCount);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">LoginPassword</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbLoginPassword = new TextBox();
+			tbLoginPassword.EnableViewState = false;
+			DefaultView.Controls.Add(tbLoginPassword);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Contact</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			comboContact = new ComponentArt.Web.UI.ComboBox();
+			comboContact.CssClass = "comboBox";
+			comboContact.HoverCssClass = "comboBoxHover";
+			comboContact.FocusedCssClass = "comboBoxHover";
+			comboContact.TextBoxCssClass = "comboTextBox";
+			comboContact.DropDownCssClass = "comboDropDown";
+			comboContact.ItemCssClass = "comboItem";
+			comboContact.ItemHoverCssClass = "comboItemHover";
+			comboContact.SelectedItemCssClass = "comboItemHover";
+			comboContact.DropHoverImageUrl = "images/drop_hover.gif";
+			comboContact.DropImageUrl = "images/drop.gif";
+			comboContact.Width = Unit.Pixel(300);
+			DefaultView.Controls.Add(comboContact);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Roles</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msRoles = new MultiSelectBox();
+			msRoles.Mode = MultiSelectBoxMode.DualSelect;
+			DefaultView.Controls.Add(msRoles);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ActivationID</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbActivationID = new TextBox();
+			tbActivationID.EnableViewState = false;
+			DefaultView.Controls.Add(tbActivationID);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+			#region Bind Default Child Data
+
+			GreyFoxContactManager contactManager = new GreyFoxContactManager("sysGlobal_Contacts");
+			GreyFoxContactCollection contactCollection = contactManager.GetCollection(string.Empty, string.Empty);
+			ComponentArt.Web.UI.ComboBoxItem ContactNullItem = new ComponentArt.Web.UI.ComboBoxItem();
+			ContactNullItem.Text = "Null";
+			ContactNullItem.Value = "Null";
+			comboContact.Items.Add(ContactNullItem);
+			foreach(GreyFoxContact contact in contactCollection)
+			{
+				ComponentArt.Web.UI.ComboBoxItem i = new ComponentArt.Web.UI.ComboBoxItem();
+				i.Text = contact.ToString();
+				i.Value = contact.ID.ToString();
+				comboContact.Items.Add(i);
+			}
+
+			GreyFoxRoleManager rolesManager = new GreyFoxRoleManager();
+			GreyFoxRoleCollection rolesCollection = rolesManager.GetCollection(string.Empty, string.Empty);
+			msRoles.Items.Add(new ListItem("Null", "Null"));
+			foreach(GreyFoxRole roles in rolesCollection)
+			{
+				ListItem i = new ListItem(roles.ToString(), roles.ID.ToString());
+				msRoles.Items.Add(i);
+			}
+
+			#endregion
+
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(greyFoxUserID == 0)
+				obj = new GreyFoxUser();
+			else
+				obj = new GreyFoxUser(greyFoxUserID);
+
+			obj.UserName = tbUserName.Text;
+			obj.IsDisabled = cbIsDisabled.Checked;
+			obj.LoginDate = DateTime.Parse(tbLoginDate.Text);
+			obj.LoginCount = int.Parse(tbLoginCount.Text);
+			obj.LoginPassword = tbLoginPassword.Text;
+			if(comboContact.SelectedItem != null && comboContact.SelectedItem.Value != "Null")
+				obj.Contact = GreyFoxContact.NewPlaceHolder("sysGlobal_Contacts", 
+					int.Parse(comboContact.SelectedItem.Value));
+			else
+				obj.Contact = null;
+
+			if(msRoles.IsChanged)
+			{
+				obj.Roles = new GreyFoxRoleCollection();
+				foreach(ListItem i in msRoles.Items)
+					if(i.Selected)
+						obj.Roles.Add(GreyFoxRole.NewPlaceHolder(int.Parse(i.Value)));
+			}
+
+			obj.ActivationID = tbActivationID.Text;
+			if(editOnAdd)
+				greyFoxUserID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbUserName.Text = string.Empty;
+				cbIsDisabled.Checked = false;
+				tbLoginDate.Text = DateTime.Now.ToString();
+				tbLoginCount.Text = string.Empty;
+				tbLoginPassword.Text = string.Empty;
+				tbActivationID.Text = string.Empty;
+				msContact.SelectedIndex = 0;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(greyFoxUserID > 0)
+				{
+					obj = new GreyFoxUser(greyFoxUserID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(greyFoxUserID <= 0)
+				{
+					obj = new GreyFoxUser();
+					headerText.Text = "Add ";
+				}
+
+				// Bind Default Data
+				tbUserName.Text = obj.UserName;
+				cbIsDisabled.Checked = obj.IsDisabled;
+				tbLoginDate.Text = obj.LoginDate.ToString();
+				tbLoginCount.Text = obj.LoginCount.ToString();
+				tbLoginPassword.Text = obj.LoginPassword;
+				if(obj.Contact != null)
+					foreach(ListItem item in comboContact.Items)
+						item.Selected = obj.Contact.ID.ToString() == item.Value;
+					else
+						msContact.SelectedIndex = 0;
+				foreach(ListItem i in msRoles.Items)
+					foreach(GreyFoxRole greyFoxRole in obj.Roles)
+						if(i.Value == greyFoxRole.ID.ToString())
+						{
+							i.Selected = true;
+							break;
+						}
+				tbActivationID.Text = obj.ActivationID;
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					greyFoxUserID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = greyFoxUserID;
+			return myState;
+		}
+	}
+}
+

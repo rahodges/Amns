@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox", "Amns.GreyFox\Amns.GreyFox.csproj", "{FE092059-B12B-4DCF-AE1E-DB154D593EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox.Content", "Amns.GreyFox.Content\Amns.GreyFox.Content.csproj", "{62CBE639-5902-4E7B-AC50-B34976D9DEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox.Yari", "Amns.GreyFox.Yari\Amns.GreyFox.Yari.csproj", "{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox.Utilities", "Amns.GreyFox.Utilities\Amns.GreyFox.Utilities.csproj", "{927CA210-079A-43DA-91C8-6FB3E5355AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Amns.GreyFox.Test\Test.csproj", "{26A327BD-04E6-437C-816C-1397CFE92F38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B42C378F-8334-4946-8B90-546DAE1BBE8E}"
+	ProjectSection(SolutionItems) = preProject
+		AmazonSearchService.sdm = AmazonSearchService.sdm
+		Database1.sdm = Database1.sdm
+		GreyFox Core Assemblies.vsmdi = GreyFox Core Assemblies.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		NameParser.ad = NameParser.ad
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System1", "System1", "{0EC4E2EE-FFEA-4565-81E5-B9CE0851F471}"
+	ProjectSection(SolutionItems) = preProject
+		System1.sd = System1.sd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://orochimaru:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Amns.GreyFox.Content\\Amns.GreyFox.Content.csproj
+		SccProjectName1 = Amns.GreyFox.Content
+		SccLocalPath1 = Amns.GreyFox.Content
+		SccProjectUniqueName2 = Amns.GreyFox.Yari\\Amns.GreyFox.Yari.csproj
+		SccProjectName2 = Amns.GreyFox.Yari
+		SccLocalPath2 = Amns.GreyFox.Yari
+		SccProjectUniqueName3 = Amns.GreyFox\\Amns.GreyFox.csproj
+		SccProjectName3 = Amns.GreyFox
+		SccLocalPath3 = Amns.GreyFox
+		SccProjectUniqueName4 = Amns.GreyFox.Utilities\\Amns.GreyFox.Utilities.csproj
+		SccProjectName4 = Amns.GreyFox.Utilities
+		SccLocalPath4 = Amns.GreyFox.Utilities
+		SccProjectUniqueName5 = Amns.GreyFox.Test\\Test.csproj
+		SccProjectName5 = Amns.GreyFox.Test
+		SccLocalPath5 = Amns.GreyFox.Test
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GreyFox Core Assemblies.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927CA210-079A-43DA-91C8-6FB3E5355AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927CA210-079A-43DA-91C8-6FB3E5355AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927CA210-079A-43DA-91C8-6FB3E5355AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927CA210-079A-43DA-91C8-6FB3E5355AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A327BD-04E6-437C-816C-1397CFE92F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A327BD-04E6-437C-816C-1397CFE92F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A327BD-04E6-437C-816C-1397CFE92F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A327BD-04E6-437C-816C-1397CFE92F38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0EC4E2EE-FFEA-4565-81E5-B9CE0851F471} = {B42C378F-8334-4946-8B90-546DAE1BBE8E}
+	EndGlobalSection
+EndGlobal

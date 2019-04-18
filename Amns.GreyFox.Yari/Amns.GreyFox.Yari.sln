@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox.Yari", "Amns.GreyFox.Yari.csproj", "{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7489A3E-69E9-4B0F-B6A9-8C2598B2FCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

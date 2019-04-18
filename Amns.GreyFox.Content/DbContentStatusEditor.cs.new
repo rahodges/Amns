@@ -1,0 +1,402 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.Content.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for DbContentStatus.
+	/// </summary>
+	[ToolboxData("<{0}:DbContentStatusEditor runat=server></{0}:DbContentStatusEditor>")]
+	public class DbContentStatusEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int dbContentStatusID;
+		private DbContentStatus obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		#region Private Control Fields for System Folder
+
+		protected ComponentArt.Web.UI.PageView SystemView;
+		private TextBox tbName;
+		private CheckBox cbIsDraft;
+		private CheckBox cbIsPublished;
+		private CheckBox cbFeeEnabled;
+		private CheckBox cbEditEnabled;
+		private CheckBox cbArchiveEnabled;
+		private CheckBox cbReviewEnabled;
+		private TextBox tbIcon;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int DbContentStatusID
+		{
+			get
+			{
+				return dbContentStatusID;
+			}
+			set
+			{
+				loadFlag = true;
+				dbContentStatusID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for System Folder
+
+			SystemView = new ComponentArt.Web.UI.PageView();
+			SystemView.CssClass = "PageContent";
+			multipage.PageViews.Add(SystemView);
+
+			TabStripTab SystemTab = new TabStripTab();
+			SystemTab.Text = "System";
+			SystemTab.PageViewId = SystemView.ID;
+			tabstrip.Tabs.Add(SystemTab);
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Name</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbName = new TextBox();
+			tbName.EnableViewState = false;
+			SystemView.Controls.Add(tbName);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">IsDraft</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbIsDraft = new CheckBox();
+			cbIsDraft.EnableViewState = false;
+			SystemView.Controls.Add(cbIsDraft);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">IsPublished</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbIsPublished = new CheckBox();
+			cbIsPublished.EnableViewState = false;
+			SystemView.Controls.Add(cbIsPublished);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">FeeEnabled</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbFeeEnabled = new CheckBox();
+			cbFeeEnabled.EnableViewState = false;
+			SystemView.Controls.Add(cbFeeEnabled);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">EditEnabled</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbEditEnabled = new CheckBox();
+			cbEditEnabled.EnableViewState = false;
+			SystemView.Controls.Add(cbEditEnabled);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ArchiveEnabled</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbArchiveEnabled = new CheckBox();
+			cbArchiveEnabled.EnableViewState = false;
+			SystemView.Controls.Add(cbArchiveEnabled);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ReviewEnabled</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbReviewEnabled = new CheckBox();
+			cbReviewEnabled.EnableViewState = false;
+			SystemView.Controls.Add(cbReviewEnabled);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			SystemView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Icon</span>"));
+			SystemView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbIcon = new TextBox();
+			tbIcon.EnableViewState = false;
+			SystemView.Controls.Add(tbIcon);
+			SystemView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(dbContentStatusID == 0)
+				obj = new DbContentStatus();
+			else
+				obj = new DbContentStatus(dbContentStatusID);
+
+			obj.Name = tbName.Text;
+			obj.IsDraft = cbIsDraft.Checked;
+			obj.IsPublished = cbIsPublished.Checked;
+			obj.FeeEnabled = cbFeeEnabled.Checked;
+			obj.EditEnabled = cbEditEnabled.Checked;
+			obj.ArchiveEnabled = cbArchiveEnabled.Checked;
+			obj.ReviewEnabled = cbReviewEnabled.Checked;
+			obj.Icon = tbIcon.Text;
+
+			if(editOnAdd)
+				dbContentStatusID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbName.Text = string.Empty;
+				cbIsDraft.Checked = false;
+				cbIsPublished.Checked = false;
+				cbFeeEnabled.Checked = false;
+				cbEditEnabled.Checked = false;
+				cbArchiveEnabled.Checked = false;
+				cbReviewEnabled.Checked = false;
+				tbIcon.Text = string.Empty;
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(dbContentStatusID > 0)
+				{
+					obj = new DbContentStatus(dbContentStatusID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(dbContentStatusID <= 0)
+				{
+					obj = new DbContentStatus();
+					headerText.Text = "Add ";
+				}
+
+				//
+				// Set Field Entries
+				//
+				tbName.Text = obj.Name;
+				cbIsDraft.Checked = obj.IsDraft;
+				cbIsPublished.Checked = obj.IsPublished;
+				cbFeeEnabled.Checked = obj.FeeEnabled;
+				cbEditEnabled.Checked = obj.EditEnabled;
+				cbArchiveEnabled.Checked = obj.ArchiveEnabled;
+				cbReviewEnabled.Checked = obj.ReviewEnabled;
+				tbIcon.Text = obj.Icon;
+
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					dbContentStatusID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = dbContentStatusID;
+			return myState;
+		}
+	}
+}
+

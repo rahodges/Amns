@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox.Content", "Amns.GreyFox.Content.csproj", "{62CBE639-5902-4E7B-AC50-B34976D9DEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amns.GreyFox", "..\Amns.GreyFox\Amns.GreyFox.csproj", "{FE092059-B12B-4DCF-AE1E-DB154D593EE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Debug.ActiveCfg = Debug|.NET
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Debug.Build.0 = Debug|.NET
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Release.ActiveCfg = Release|.NET
+		{62CBE639-5902-4E7B-AC50-B34976D9DEDD}.Release.Build.0 = Release|.NET
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Debug.ActiveCfg = Debug|.NET
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Debug.Build.0 = Debug|.NET
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Release.ActiveCfg = Release|.NET
+		{FE092059-B12B-4DCF-AE1E-DB154D593EE8}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

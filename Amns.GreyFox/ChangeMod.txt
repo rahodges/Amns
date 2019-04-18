@@ -1,0 +1,87 @@
+GreyFox Core Library CHANGEMOD
+=======================================================================================
+Version 1.87 - January 15, 2007
+* User Login Control Updated for pre 2.0 release.
+
+SQL UPDATES:
+ALTER TABLE sysGlobal_Users ADD COLUMN ActivationID TEXT(25)
+
+Version 1.85 - January 30, 2006
+*	Started Update of webcontrol client scripts to Prototype.js
+*	Viewpanes on TableWindows now use AJAX rather than the IFRAME hack.
+
+Version 1.84 - July 13, 2005
+*	Webcontrol Scripts are now embedded with a resource handler!
+
+Version 1.80 - August 18, 2004
+*	Updated Diplomate Editor w/ updated DbModel Editors w/ tabs.
+*	Contact databases now support flags for incorrect contact
+	information.
+	byte AddressFlags = {Unvalidated = 0x1, Valid = 0x2, Returned = 0x4, Invalid = 0x8};
+	byte VoiceFlags = {Unvalidated = 0x1, Valid = 0x2, Disconnected = 0x4};
+	byte InternetFlags = {Unvalidated = 0x1, Valid = 0x2, Returned = 0x4};
+*	User editor now uses updated DbModel Editor with tabs.
+
+SQL UPDATES:
+ALTER TABLE {0} ADD COLUMN AddressFlags BYTE;
+ALTER TABLE {0} ADD COLUMN HomePhoneFlags BYTE;
+ALTER TABLE {0} ADD COLUMN WorkPhoneFlags BYTE;
+ALTER TABLE {0} ADD COLUMN Email1Flags BYTE;
+
+Version 1.60 - August 12, 2004
+*	Removed obsolete cache and index list classes.
+*	Caching uses ASP.net default web cache instead of custom cache classes.
+*	Address parser will not autocorrect first word in addresses, however it will
+	capitalize the first word. This corrects the "autocorrection" of the abbreviation
+	of the word "Saint" ("St.") into the word "Street".
+Version 1.51 - April 23, 2004
+*	Toolbars now render in a toolbar div tag so that window printer function can
+	disable the printout of toolbars. A known bug is the blank space that prints
+	in the toolbar row.
+*	Print feature now automatically expands a grid when printing, this fixes the
+	print bug when tablewindow DIVs were not unscrolled before printing.
+Version 1.5 - April 17, 2004
+*	Added web toolbar classes and TableGrid which inherits TableWindow for DbModel
+	generated classes!
+Version 1.2 - March 18, 2004
+*	Added address parsing on contacts.
+*	Added FastDictionary class for fast custom spelling/address checking.
+Version 1.19 - March 16, 2004
+*	Updated core DbModel Class Managers with more streamlined database code.
+Version 1.18 - March 4, 2004
+*	Added print feature to table windows.
+Version 1.17 - March 2, 20044
+*	Added MultiSelectBox.
+Version 1.16 - January 11, 2004
+*	Bugs fixed in GreyFoxContact.ParseCountry and GreyFoxContact.ParseStateProvince
+	methods.
+*	Countries are parsed from an internal list of known countries.
+Version 1.151 - January 1, 2004
+*	"Object Reference Not Found" bug corrected in the Contact.ConstructName
+	method.
+Version 1.15 - December 17, 2003
+*	New WebUtilities Namespace offers PageInterrupt class which allows you
+	to interrupt the page being rendered in ASP.net. This is useful for
+	special cases which are too numerous to list here.
+Version 1.14 - December 11, 2003
+*	Updated GreyFoxContact.ConstructName() method to detect null values which
+	previously caused exceptions.
+Version 1.13 - December 04, 2003
+*	SearchQueryBuilder now supports exclusive key searches with a "!" prefix.
+	This disables LIKE searches on the key.
+Version 1.12 - December 03, 2003
+*	ConstructFullAddress merged address1 and address2 fields together. This
+	is now corrected. Performance is now enhanced with StringBuilder.
+Version 1.1 - November 16, 2003
+*	Class collections now feature an OnCollectionChanged event.
+*	Classes with children collections now handle OnCollectionChanged 
+	events to desyncronize objects when the	children collection changes.
+*	User roles change bug fixed by previous feature.
+*	GreyFoxContat.ConstructName performance increased; calls a single
+	EnsurePreLoad() method and uses private fields instead of properties to
+	access name data.
+
+Version 1.00 - November 15, 2003
+*	Official release of Amns.GreyFox Core Assembly.
+*	Classes now implement a syncronization detection feature. If properties
+	are set to an existing value, syncronization will not change.

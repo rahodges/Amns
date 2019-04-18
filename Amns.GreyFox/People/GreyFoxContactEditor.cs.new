@@ -1,0 +1,763 @@
+using System;
+using System.Data;
+using System.Web.UI;
+using System.ComponentModel;
+using ComponentArt.Web.UI;
+using System.Web.UI.WebControls;
+using Amns.GreyFox.Web.UI.WebControls;
+
+namespace Amns.GreyFox.People.Web.UI.WebControls
+{
+	/// <summary>
+	/// Default web editor for GreyFoxContact.
+	/// </summary>
+	[ToolboxData("<{0}:GreyFoxContactEditor runat=server></{0}:GreyFoxContactEditor>")]
+	public class GreyFoxContactEditor : System.Web.UI.WebControls.WebControl, INamingContainer
+	{
+		private int greyFoxContactID;
+		private string greyFoxContactTable = "sysGlobal_Contacts";
+		private GreyFoxContact obj;
+		private bool loadFlag = false;
+		private bool resetOnAdd;
+		private bool editOnAdd;
+
+		protected ComponentArt.Web.UI.TabStrip tabstrip;
+		protected ComponentArt.Web.UI.MultiPage multipage;
+		protected Literal headerText;
+
+		#region Private Control Fields for Name Folder
+
+		protected ComponentArt.Web.UI.PageView NameView;
+		private TextBox tbDisplayName;
+		private TextBox tbPrefix;
+		private TextBox tbFirstName;
+		private TextBox tbMiddleName;
+		private TextBox tbLastName;
+		private CheckBox cbSuffixCommaEnabled;
+		private TextBox tbSuffix;
+		private TextBox tbTitle;
+		private TextBox tbValidationFlags;
+		private TextBox tbValidationMemo;
+
+		#endregion
+
+		#region Private Control Fields for Address Folder
+
+		protected ComponentArt.Web.UI.PageView AddressView;
+		private TextBox tbAddress1;
+		private TextBox tbAddress2;
+		private TextBox tbCity;
+		private TextBox tbStateProvince;
+		private TextBox tbCountry;
+		private TextBox tbPostalCode;
+
+		#endregion
+
+		#region Private Control Fields for Voice Folder
+
+		protected ComponentArt.Web.UI.PageView VoiceView;
+		private TextBox tbHomePhone;
+		private TextBox tbWorkPhone;
+		private TextBox tbFax;
+		private TextBox tbPager;
+		private TextBox tbMobilePhone;
+
+		#endregion
+
+		#region Private Control Fields for Internet Folder
+
+		protected ComponentArt.Web.UI.PageView InternetView;
+		private TextBox tbEmail1;
+		private TextBox tbEmail2;
+		private TextBox tbUrl;
+
+		#endregion
+
+		#region Private Control Fields for Business Folder
+
+		protected ComponentArt.Web.UI.PageView BusinessView;
+		private TextBox tbBusinessName;
+
+		#endregion
+
+		#region Private Control Fields for Default Folder
+
+		protected ComponentArt.Web.UI.PageView DefaultView;
+		private TextBox tbMemoText;
+		private TextBox tbBirthDate;
+		private ComponentArt.Web.UI.ComboBox comboContactMethod;
+
+		#endregion
+
+		#region Private Control Fields for _system Folder
+
+		protected ComponentArt.Web.UI.PageView _systemView;
+
+		#endregion
+
+		private Button btOk;
+		private Button btCancel;
+		private Button btDelete;
+
+		#region Public Control Properties
+
+		[Bindable(true), Category("Data"), DefaultValue(0)]
+		public int GreyFoxContactID
+		{
+			get
+			{
+				return greyFoxContactID;
+			}
+			set
+			{
+				loadFlag = true;
+				greyFoxContactID = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool ResetOnAdd
+		{
+			get
+			{
+				return resetOnAdd;
+			}
+			set
+			{
+				resetOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Behavior"), DefaultValue(false)]
+		public bool EditOnAdd
+		{
+			get
+			{
+				return editOnAdd;
+			}
+			set
+			{
+				editOnAdd = value;
+			}
+		}
+
+		[Bindable(true), Category("Data"), DefaultValue("sysGlobal_Contacts")]
+		public string GreyFoxContactTable
+		{
+			get
+			{
+				return greyFoxContactTable;
+			}
+			set
+			{
+				greyFoxContactTable = value;
+			}
+		}
+
+		#endregion
+
+		protected override void CreateChildControls()
+		{
+			Panel container = new Panel();
+			container.CssClass = this.CssClass;
+			Controls.Add(container);
+			Panel header = new Panel();
+			header.CssClass = "pHead";
+			container.Controls.Add(header);
+			headerText = new Literal();
+			header.Controls.Add(headerText);
+			Panel content = new Panel();
+			content.CssClass = "pContent";
+			container.Controls.Add(content);
+			#region Tab Strip
+
+			tabstrip = new ComponentArt.Web.UI.TabStrip();
+
+			// Create the DefaultTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook defaultTabLook = new ComponentArt.Web.UI.ItemLook();
+			defaultTabLook.LookId = "DefaultTabLook";
+			defaultTabLook.CssClass = "DefaultTab";
+			defaultTabLook.HoverCssClass = "DefaultTabHover";
+			defaultTabLook.LabelPaddingLeft = Unit.Parse("10");
+			defaultTabLook.LabelPaddingRight = Unit.Parse("10");
+			defaultTabLook.LabelPaddingTop = Unit.Parse("5");
+			defaultTabLook.LabelPaddingBottom = Unit.Parse("4");
+			defaultTabLook.LeftIconUrl = "tab_left_icon.gif";
+			defaultTabLook.RightIconUrl = "tab_right_icon.gif";
+			defaultTabLook.HoverLeftIconUrl = "hover_tab_left_icon.gif";
+			defaultTabLook.HoverRightIconUrl = "hover_tab_right_icon.gif";
+			defaultTabLook.LeftIconWidth = Unit.Parse("3");
+			defaultTabLook.LeftIconHeight = Unit.Parse("21");
+			defaultTabLook.RightIconWidth = Unit.Parse("3");
+			defaultTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(defaultTabLook);
+
+			// Create the SelectedTabLook instance and add it to the ItemLooks collection
+			ComponentArt.Web.UI.ItemLook selectedTabLook = new ComponentArt.Web.UI.ItemLook();
+			selectedTabLook.LookId = "SelectedTabLook";
+			selectedTabLook.CssClass = "SelectedTab";
+			selectedTabLook.LabelPaddingLeft = Unit.Parse("10");
+			selectedTabLook.LabelPaddingRight = Unit.Parse("10");
+			selectedTabLook.LabelPaddingTop = Unit.Parse("5");
+			selectedTabLook.LabelPaddingBottom = Unit.Parse("4");
+			selectedTabLook.LeftIconUrl = "selected_tab_left_icon.gif";
+			selectedTabLook.RightIconUrl = "selected_tab_right_icon.gif";
+			selectedTabLook.LeftIconWidth = Unit.Parse("3");
+			selectedTabLook.LeftIconHeight = Unit.Parse("21");
+			selectedTabLook.RightIconWidth = Unit.Parse("3");
+			selectedTabLook.RightIconHeight = Unit.Parse("21");
+			tabstrip.ItemLooks.Add(selectedTabLook);
+
+			tabstrip.ID = this.ID + "_TabStrip";
+			tabstrip.CssClass = "TopGroup";
+			tabstrip.DefaultItemLookId = "DefaultTabLook";
+			tabstrip.DefaultSelectedItemLookId = "SelectedTabLook";
+			tabstrip.DefaultGroupTabSpacing = 1;
+			tabstrip.ImagesBaseUrl = "tabstrip_images/";
+			tabstrip.MultiPageId = this.ID + "_MultiPage";
+			content.Controls.Add(tabstrip);
+
+			#endregion
+
+			#region MultiPage
+
+			multipage = new ComponentArt.Web.UI.MultiPage();
+			multipage.ID = this.ID + "_MultiPage";
+			multipage.CssClass = "MultiPage";
+			content.Controls.Add(multipage);
+
+			#endregion
+
+			#region Child Controls for Name Folder
+
+			NameView = new ComponentArt.Web.UI.PageView();
+			NameView.CssClass = "PageContent";
+			multipage.PageViews.Add(NameView);
+
+			TabStripTab NameTab = new TabStripTab();
+			NameTab.Text = "Name";
+			NameTab.PageViewId = NameView.ID;
+			tabstrip.Tabs.Add(NameTab);
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">DisplayName</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbDisplayName = new TextBox();
+			tbDisplayName.EnableViewState = false;
+			NameView.Controls.Add(tbDisplayName);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Prefix</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPrefix = new TextBox();
+			tbPrefix.EnableViewState = false;
+			NameView.Controls.Add(tbPrefix);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">First</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbFirstName = new TextBox();
+			tbFirstName.EnableViewState = false;
+			NameView.Controls.Add(tbFirstName);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Middle</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMiddleName = new TextBox();
+			tbMiddleName.EnableViewState = false;
+			NameView.Controls.Add(tbMiddleName);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Last</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbLastName = new TextBox();
+			tbLastName.EnableViewState = false;
+			NameView.Controls.Add(tbLastName);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Enable comma before suffix.</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			cbSuffixCommaEnabled = new CheckBox();
+			cbSuffixCommaEnabled.EnableViewState = false;
+			NameView.Controls.Add(cbSuffixCommaEnabled);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Suffix</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbSuffix = new TextBox();
+			tbSuffix.EnableViewState = false;
+			NameView.Controls.Add(tbSuffix);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Title</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbTitle = new TextBox();
+			tbTitle.EnableViewState = false;
+			NameView.Controls.Add(tbTitle);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ValidationFlags</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbValidationFlags = new TextBox();
+			tbValidationFlags.EnableViewState = false;
+			NameView.Controls.Add(tbValidationFlags);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			NameView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ValidationMemo</span>"));
+			NameView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbValidationMemo = new TextBox();
+			tbValidationMemo.EnableViewState = false;
+			NameView.Controls.Add(tbValidationMemo);
+			NameView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Address Folder
+
+			AddressView = new ComponentArt.Web.UI.PageView();
+			AddressView.CssClass = "PageContent";
+			multipage.PageViews.Add(AddressView);
+
+			TabStripTab AddressTab = new TabStripTab();
+			AddressTab.Text = "Address";
+			AddressTab.PageViewId = AddressView.ID;
+			tabstrip.Tabs.Add(AddressTab);
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Address Line 1</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbAddress1 = new TextBox();
+			tbAddress1.EnableViewState = false;
+			AddressView.Controls.Add(tbAddress1);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Address Line 2</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbAddress2 = new TextBox();
+			tbAddress2.EnableViewState = false;
+			AddressView.Controls.Add(tbAddress2);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">City</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbCity = new TextBox();
+			tbCity.EnableViewState = false;
+			AddressView.Controls.Add(tbCity);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">State / Province</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbStateProvince = new TextBox();
+			tbStateProvince.EnableViewState = false;
+			AddressView.Controls.Add(tbStateProvince);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Country</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbCountry = new TextBox();
+			tbCountry.EnableViewState = false;
+			AddressView.Controls.Add(tbCountry);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			AddressView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Postal Code</span>"));
+			AddressView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPostalCode = new TextBox();
+			tbPostalCode.EnableViewState = false;
+			AddressView.Controls.Add(tbPostalCode);
+			AddressView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Voice Folder
+
+			VoiceView = new ComponentArt.Web.UI.PageView();
+			VoiceView.CssClass = "PageContent";
+			multipage.PageViews.Add(VoiceView);
+
+			TabStripTab VoiceTab = new TabStripTab();
+			VoiceTab.Text = "Voice";
+			VoiceTab.PageViewId = VoiceView.ID;
+			tabstrip.Tabs.Add(VoiceTab);
+
+			VoiceView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Home Phone</span>"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbHomePhone = new TextBox();
+			tbHomePhone.EnableViewState = false;
+			VoiceView.Controls.Add(tbHomePhone);
+			VoiceView.Controls.Add(new LiteralControl("</span></div>"));
+
+			VoiceView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Work Phone</span>"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbWorkPhone = new TextBox();
+			tbWorkPhone.EnableViewState = false;
+			VoiceView.Controls.Add(tbWorkPhone);
+			VoiceView.Controls.Add(new LiteralControl("</span></div>"));
+
+			VoiceView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Fax</span>"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbFax = new TextBox();
+			tbFax.EnableViewState = false;
+			VoiceView.Controls.Add(tbFax);
+			VoiceView.Controls.Add(new LiteralControl("</span></div>"));
+
+			VoiceView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Pager</span>"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbPager = new TextBox();
+			tbPager.EnableViewState = false;
+			VoiceView.Controls.Add(tbPager);
+			VoiceView.Controls.Add(new LiteralControl("</span></div>"));
+
+			VoiceView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Mobile Phone</span>"));
+			VoiceView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMobilePhone = new TextBox();
+			tbMobilePhone.EnableViewState = false;
+			VoiceView.Controls.Add(tbMobilePhone);
+			VoiceView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Internet Folder
+
+			InternetView = new ComponentArt.Web.UI.PageView();
+			InternetView.CssClass = "PageContent";
+			multipage.PageViews.Add(InternetView);
+
+			TabStripTab InternetTab = new TabStripTab();
+			InternetTab.Text = "Internet";
+			InternetTab.PageViewId = InternetView.ID;
+			tabstrip.Tabs.Add(InternetTab);
+
+			InternetView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">First Email</span>"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbEmail1 = new TextBox();
+			tbEmail1.EnableViewState = false;
+			InternetView.Controls.Add(tbEmail1);
+			InternetView.Controls.Add(new LiteralControl("</span></div>"));
+
+			InternetView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Second Email</span>"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbEmail2 = new TextBox();
+			tbEmail2.EnableViewState = false;
+			InternetView.Controls.Add(tbEmail2);
+			InternetView.Controls.Add(new LiteralControl("</span></div>"));
+
+			InternetView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Url</span>"));
+			InternetView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbUrl = new TextBox();
+			tbUrl.EnableViewState = false;
+			InternetView.Controls.Add(tbUrl);
+			InternetView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Business Folder
+
+			BusinessView = new ComponentArt.Web.UI.PageView();
+			BusinessView.CssClass = "PageContent";
+			multipage.PageViews.Add(BusinessView);
+
+			TabStripTab BusinessTab = new TabStripTab();
+			BusinessTab.Text = "Business";
+			BusinessTab.PageViewId = BusinessView.ID;
+			tabstrip.Tabs.Add(BusinessTab);
+
+			BusinessView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			BusinessView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Business Name</span>"));
+			BusinessView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbBusinessName = new TextBox();
+			tbBusinessName.EnableViewState = false;
+			BusinessView.Controls.Add(tbBusinessName);
+			BusinessView.Controls.Add(new LiteralControl("</span></div>"));
+
+			#endregion
+
+			#region Child Controls for Default Folder
+
+			DefaultView = new ComponentArt.Web.UI.PageView();
+			DefaultView.CssClass = "PageContent";
+			multipage.PageViews.Add(DefaultView);
+
+			TabStripTab DefaultTab = new TabStripTab();
+			DefaultTab.Text = "Default";
+			DefaultTab.PageViewId = DefaultView.ID;
+			tabstrip.Tabs.Add(DefaultTab);
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Memo Text</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbMemoText = new TextBox();
+			tbMemoText.EnableViewState = false;
+			DefaultView.Controls.Add(tbMemoText);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">Birth Date</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			tbBirthDate = new TextBox();
+			tbBirthDate.EnableViewState = false;
+			DefaultView.Controls.Add(tbBirthDate);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+
+			DefaultView.Controls.Add(new LiteralControl("<div class=\"inputrow\">"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputlabel\">ContactMethod</span>"));
+			DefaultView.Controls.Add(new LiteralControl("<span class=\"inputfield\">"));
+			msContactMethod = new MultiSelectBox();
+			msContactMethod.Mode = MultiSelectBoxMode.DropDownList;
+			DefaultView.Controls.Add(msContactMethod);
+			DefaultView.Controls.Add(new LiteralControl("</span></div>"));
+			#endregion
+
+			Panel buttons = new Panel();
+			buttons.CssClass = "pButtons";
+			content.Controls.Add(buttons);
+
+			btOk = new Button();
+			btOk.Text = "OK";
+			btOk.Width = Unit.Pixel(72);
+			btOk.EnableViewState = false;
+			btOk.Click += new EventHandler(ok_Click);
+			buttons.Controls.Add(btOk);
+
+			btCancel = new Button();
+			btCancel.Text = "Cancel";
+			btCancel.Width = Unit.Pixel(72);
+			btCancel.EnableViewState = false;
+			btCancel.CausesValidation = false;
+			btCancel.Click += new EventHandler(cancel_Click);
+			buttons.Controls.Add(btCancel);
+
+			btDelete = new Button();
+			btDelete.Text = "Delete";
+			btDelete.Width = Unit.Pixel(72);
+			btDelete.EnableViewState = false;
+			btDelete.Click += new EventHandler(delete_Click);
+			buttons.Controls.Add(btDelete);
+
+			bind();
+			ChildControlsCreated = true;
+		}
+
+		private void bind()
+		{
+		}
+
+		#region Events
+
+		protected void ok_Click(object sender, EventArgs e)
+		{
+			if(greyFoxContactID == 0)
+				obj = new GreyFoxContact(greyFoxContactTable);
+			else
+				obj = new GreyFoxContact(greyFoxContactTable, greyFoxContactID);
+
+			obj.DisplayName = tbDisplayName.Text;
+			obj.Prefix = tbPrefix.Text;
+			obj.FirstName = tbFirstName.Text;
+			obj.MiddleName = tbMiddleName.Text;
+			obj.LastName = tbLastName.Text;
+			obj.SuffixCommaEnabled = cbSuffixCommaEnabled.Checked;
+			obj.Suffix = tbSuffix.Text;
+			obj.Title = tbTitle.Text;
+			obj.ValidationFlags = byte.Parse(tbValidationFlags.Text);
+			obj.ValidationMemo = tbValidationMemo.Text;
+			obj.Address1 = tbAddress1.Text;
+			obj.Address2 = tbAddress2.Text;
+			obj.City = tbCity.Text;
+			obj.StateProvince = tbStateProvince.Text;
+			obj.Country = tbCountry.Text;
+			obj.PostalCode = tbPostalCode.Text;
+			obj.HomePhone = tbHomePhone.Text;
+			obj.WorkPhone = tbWorkPhone.Text;
+			obj.Fax = tbFax.Text;
+			obj.Pager = tbPager.Text;
+			obj.MobilePhone = tbMobilePhone.Text;
+			obj.Email1 = tbEmail1.Text;
+			obj.Email2 = tbEmail2.Text;
+			obj.Url = tbUrl.Text;
+			obj.BusinessName = tbBusinessName.Text;
+			obj.MemoText = tbMemoText.Text;
+			obj.BirthDate = DateTime.Parse(tbBirthDate.Text);
+			if(comboContactMethod.SelectedItem != null && comboContactMethod.SelectedItem.Value != "Null")
+				obj.ContactMethod = Enum.Parse(GreyFoxContactMethod, comboContactMethod.SelectedItem.Value);
+			else
+				obj.ContactMethod = null;
+
+			if(editOnAdd)
+				greyFoxContactID = obj.Save();
+			else
+				obj.Save();
+
+			if(resetOnAdd)
+			{
+				tbDisplayName.Text = string.Empty;
+				tbPrefix.Text = string.Empty;
+				tbFirstName.Text = string.Empty;
+				tbMiddleName.Text = string.Empty;
+				tbLastName.Text = string.Empty;
+				cbSuffixCommaEnabled.Checked = false;
+				tbSuffix.Text = string.Empty;
+				tbTitle.Text = string.Empty;
+				tbValidationFlags.Text = string.Empty;
+				tbValidationMemo.Text = string.Empty;
+				tbAddress1.Text = string.Empty;
+				tbAddress2.Text = string.Empty;
+				tbCity.Text = string.Empty;
+				tbStateProvince.Text = string.Empty;
+				tbCountry.Text = string.Empty;
+				tbPostalCode.Text = string.Empty;
+				tbHomePhone.Text = string.Empty;
+				tbWorkPhone.Text = string.Empty;
+				tbFax.Text = string.Empty;
+				tbPager.Text = string.Empty;
+				tbMobilePhone.Text = string.Empty;
+				tbEmail1.Text = string.Empty;
+				tbEmail2.Text = string.Empty;
+				tbUrl.Text = string.Empty;
+				tbBusinessName.Text = string.Empty;
+				tbMemoText.Text = string.Empty;
+				tbBirthDate.Text = DateTime.Now.ToString();
+			}
+
+			OnUpdated(EventArgs.Empty);
+		}
+
+		protected void cancel_Click(object sender, EventArgs e)
+		{
+			this.OnCancelled(EventArgs.Empty);
+		}
+
+		protected void delete_Click(object sender, EventArgs e)
+		{
+			this.OnDeleteClicked(EventArgs.Empty);
+		}
+
+		public event EventHandler Cancelled;
+		protected virtual void OnCancelled(EventArgs e)
+		{
+			if(Cancelled != null)
+				Cancelled(this, e);
+		}
+
+		public event EventHandler Updated;
+		protected virtual void OnUpdated(EventArgs e)
+		{
+			if(Updated != null)
+				Updated(this, e);
+		}
+
+		public event EventHandler DeleteClicked;
+		protected virtual void OnDeleteClicked(EventArgs e)
+		{
+			if(DeleteClicked != null)
+			DeleteClicked(this, e);
+		}
+
+		#endregion
+
+		protected override void OnPreRender(EventArgs e)
+		{
+			if(loadFlag)
+			{
+				if(greyFoxContactID > 0)
+				{
+					obj = new GreyFoxContact(greyFoxContactTable, greyFoxContactID);
+					headerText.Text = "Edit  - " + obj.ToString();
+				}
+				else if(greyFoxContactID <= 0)
+				{
+					obj = new GreyFoxContact(greyFoxContactTable);
+					headerText.Text = "Add ";
+				}
+
+				// Bind Name Data
+				tbDisplayName.Text = obj.DisplayName;
+				tbPrefix.Text = obj.Prefix;
+				tbFirstName.Text = obj.FirstName;
+				tbMiddleName.Text = obj.MiddleName;
+				tbLastName.Text = obj.LastName;
+				cbSuffixCommaEnabled.Checked = obj.SuffixCommaEnabled;
+				tbSuffix.Text = obj.Suffix;
+				tbTitle.Text = obj.Title;
+				tbValidationFlags.Text = obj.ValidationFlags.ToString();
+				tbValidationMemo.Text = obj.ValidationMemo;
+
+				// Bind Address Data
+				tbAddress1.Text = obj.Address1;
+				tbAddress2.Text = obj.Address2;
+				tbCity.Text = obj.City;
+				tbStateProvince.Text = obj.StateProvince;
+				tbCountry.Text = obj.Country;
+				tbPostalCode.Text = obj.PostalCode;
+
+				// Bind Voice Data
+				tbHomePhone.Text = obj.HomePhone;
+				tbWorkPhone.Text = obj.WorkPhone;
+				tbFax.Text = obj.Fax;
+				tbPager.Text = obj.Pager;
+				tbMobilePhone.Text = obj.MobilePhone;
+
+				// Bind Internet Data
+				tbEmail1.Text = obj.Email1;
+				tbEmail2.Text = obj.Email2;
+				tbUrl.Text = obj.Url;
+
+				// Bind Business Data
+				tbBusinessName.Text = obj.BusinessName;
+
+				// Bind Default Data
+				tbMemoText.Text = obj.MemoText;
+				tbBirthDate.Text = obj.BirthDate.ToString();
+				if(obj.ContactMethod != null)
+					foreach(ListItem item in comboContactMethod.Items)
+						item.Selected = obj.ContactMethod.ToString() == item.Value;
+					else
+						comboContactMethod.SelectedIndex = 0;
+				tabstrip.SelectedTab = tabstrip.Tabs[0];
+			}
+		}
+
+		protected override void LoadViewState(object savedState)
+		{
+			if(savedState != null)
+			{
+				object[] myState = (object[]) savedState;
+				if(myState[0] != null)
+					base.LoadViewState(myState[0]);
+				if(myState[1] != null)
+					greyFoxContactID = (int) myState[1];
+			}
+		}
+
+		protected override object SaveViewState()
+		{
+			object baseState = base.SaveViewState();
+			object[] myState = new object[2];
+			myState[0] = baseState;
+			myState[1] = greyFoxContactID;
+			return myState;
+		}
+	}
+}
+

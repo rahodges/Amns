@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<contactdictionary>
+<namesdictionary>
+	<prefixes>
+	</prefixes>
+	<surnameprefixes>
+	</surnameprefixes>
+	<suffixes>
+	</suffixes>
+</namesdictionary>
+<addressdictionary>
+	<address>
+	</address>
+	<countries>
+		<country name="United States" postcode="USA">
+			<states>
+				<state name="Alabama" postcode="AL" />
+				<state name="Alaska" postcode="AK" />
+			</states>
+		</country>
+		<country name="Canada" postcode="Canada">
+		</country>
+		<states>
+		</states>
+	</countries>
+</addressparser>
+</addressdictionary>
